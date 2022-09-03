@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_01_183010) do
+ActiveRecord::Schema.define(version: 2022_09_03_131953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,11 +26,19 @@ ActiveRecord::Schema.define(version: 2022_09_01_183010) do
 
   create_table "steps", force: :cascade do |t|
     t.text "content"
-    t.string "todo"
     t.bigint "kit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["kit_id"], name: "index_steps_on_kit_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "content"
+    t.boolean "status", default: false
+    t.bigint "step_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["step_id"], name: "index_tasks_on_step_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,4 +58,5 @@ ActiveRecord::Schema.define(version: 2022_09_01_183010) do
 
   add_foreign_key "kits", "users"
   add_foreign_key "steps", "kits"
+  add_foreign_key "tasks", "steps"
 end
