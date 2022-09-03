@@ -1,20 +1,20 @@
 <%# TODO: change the Company name to be dinamic %>
 <h1>Hello, Le Wagon</h1>
-<ul class="row spacing">
+<ul class="row px-0">
   <% @kits.each do |kit| %>
-    <li class="col-md-2 me-3">
+    <li class="col-md-3 mt-4">
       <%= link_to kit_path(kit) do %>
         <div class="custom-card">
           <%= image_tag 'https://images.unsplash.com/photo-1662184912775-4e5bf79e7112?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60', class:"card-image" %>
           <div class="custom-card-body">
-            <h3><%= kit.title %></h3>
+            <h3 class="card-title"><%= kit.title %></h3>
             <p><%= kit.description %></p>
           </div>
         </div>
       <% end %>
     </li>
   <% end %>
-  <li class="col-md-2">
+  <li class="col-md-3 mt-4">
     <%= link_to new_kit_path do %>
       <div class="custom-card add-new-card">
           <div class="custom-card-body">
