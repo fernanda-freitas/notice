@@ -1,12 +1,14 @@
 .custom-card {
   background-color: white;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   overflow: hidden;
   -webkit-box-shadow: 5px 5px 17px 5px rgba(0,0,0,0.07);
   box-shadow: 5px 5px 17px 5px rgba(0,0,0,0.07);
   height: 340px;
 
   p {
+    margin-top: .5rem;
+    color: $dark-gray;
     // Line-clamp
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -23,6 +25,11 @@
 
   .custom-card-body {
     padding: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 300;
   }
 }
 
