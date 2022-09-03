@@ -14,10 +14,23 @@ class KitsController < ApplicationController
   def create
     @kit = Kit.new(kit_params)
     @kit.user = current_user
-      if @kit.save!
-        redirect_to kit_path(@kit)
-      else
-        render :new
+    if @kit.save!
+      redirect_to kit_path(@kit)
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @kit = Kit.find(params[:id])
+  end
+
+  def update
+    @kit = Kit.find(params[:id])
+    if @kit.update(kit_params)
+      redirect_to kit_path(@kit)
+    else
+      render :edit
     end
   end
 
