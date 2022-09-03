@@ -1,0 +1,39 @@
+.custom-card {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  -webkit-box-shadow: 5px 5px 17px 5px rgba(0,0,0,0.07);
+  box-shadow: 5px 5px 17px 5px rgba(0,0,0,0.07);
+  height: 340px;
+
+  p {
+    // Line-clamp
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-image {
+    height: 160px;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .custom-card-body {
+    padding: 1.5rem;
+  }
+}
+
+.custom-card.add-new-card {
+  display: flex;
+
+  .custom-card-body {
+    margin: auto;
+  }
+
+  .icon-add {
+    width: 60px;
+  }
+}
