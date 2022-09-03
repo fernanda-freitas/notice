@@ -1,5 +1,9 @@
 <ul>
   <% @kits.each do |kit| %>
-    <li><%= kit.title %> - <%= kit.description %></li>
+    <li>
+      <%= link_to kit_path(kit) do %>
+        <%= kit.title %> - <%= kit.description %>
+      <% end %>
+    </li>
   <% end %>
 </ul>
