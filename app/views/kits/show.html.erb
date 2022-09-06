@@ -1,4 +1,13 @@
 <h2><%= @kit.title %></h2>
 <p><%= @kit.description %></p>
-<%= link_to 'Edit', edit_kit_path(@kit) %> |
+<h3>Steps</h3>
+<ul>
+  <% counter = 1 %>
+  <% @steps.each do |step| %>
+    <li>Step <%= counter %>: <%= step.content %> (<%= link_to 'See details', kit_step_path(@kit, step), class: "text-primary" %>)</li>
+    <% counter += 1 %>
+  <% end %>
+</ul>
+<p><%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %></p>
+<%= link_to 'Edit', edit_kit_path(@kit.id) %> |
 <%= link_to 'Delete', @kit, method: :delete %>
