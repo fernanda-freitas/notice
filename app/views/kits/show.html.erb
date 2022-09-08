@@ -6,7 +6,7 @@
   <% @steps.each do |step| %>
     <li>
       <p>Step <%= counter %>: <%= step.title %></p>
-      <p><small><%= step.content %> (<%= link_to 'See details', kit_step_path(@kit, step), class: "text-primary" %>)</small></p>
+      <p><small><%= step.content %> (<%= link_to 'See details', step_path(step), class: "text-primary" %>)</small></p>
     </li>
     <% counter += 1 %>
   <% end %>
