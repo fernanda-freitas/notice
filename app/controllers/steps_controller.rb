@@ -49,6 +49,6 @@ class StepsController < ApplicationController
 
   # TODO: add image to strong params
   def step_params
-    params.require(:step).permit(:content)
+    params.require(:step).permit(:title, :content)
   end
 end
