@@ -2,4 +2,4 @@
 <p><%= @step.content %></p>
 <%= link_to '< Back', kit_path(@step.kit_id) %> |
 <%= link_to 'Edit', edit_step_path(@step) %> |
-<%= link_to 'Delete', step_path(@step), method: :delete %>
+<%= link_to 'Delete', kit_step_path(@kit, @step), method: :delete %>

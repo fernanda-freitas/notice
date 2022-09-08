@@ -1,6 +1,6 @@
 class StepsController < ApplicationController
-  before_action :set_kit, only: [ :new, :create ]
-  before_action :set_step, only: [ :show, :edit, :update ]
+  before_action :set_kit, only: [ :new, :create, :destroy ]
+  before_action :set_step, only: [ :show, :edit, :update, :destroy ]
 
   def new
     @step = Step.new
@@ -25,17 +25,17 @@ class StepsController < ApplicationController
   end
 
   def update
+    @kit = @step.kit_id
     if @step.update(step_params)
-      redirect_to step_path(@step)
+      redirect_to kit_path(@kit)
     else
       render :edit
     end
   end
 
   def destroy
-    @step = Step.find(params[:id])
     @step.destroy
-    redirect_to root_path
+    redirect_to kit_step_path(@kit)
   end
 
   private
