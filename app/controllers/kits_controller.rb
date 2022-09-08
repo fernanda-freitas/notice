@@ -17,7 +17,7 @@ class KitsController < ApplicationController
     @kit = Kit.new(kit_params)
     @kit.user = current_user
     if @kit.save!
-      redirect_to kits_path
+      redirect_to new_kit_step_path(@kit)
     else
       render :new
     end
