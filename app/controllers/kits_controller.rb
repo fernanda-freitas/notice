@@ -6,6 +6,7 @@ class KitsController < ApplicationController
   end
 
   def show
+    @steps = Step.where(:kit_id => @kit)
   end
 
   def new
@@ -44,7 +45,7 @@ class KitsController < ApplicationController
     @kit = Kit.find(params[:id])
   end
 
-  # TODO: to add image to stropng params
+  # TODO: to add image to strong params
   def kit_params
     params.require(:kit).permit(:title, :description)
   end
