@@ -1,5 +1,5 @@
 class StepsController < ApplicationController
-  before_action :set_kit, only: [ :new, :create, :destroy ]
+  before_action :set_kit, only: [ :new, :create, :show, :destroy ]
   before_action :set_step, only: [ :show, :edit, :update, :destroy ]
 
   def new
@@ -35,7 +35,7 @@ class StepsController < ApplicationController
 
   def destroy
     @step.destroy
-    redirect_to kit_step_path(@kit)
+    redirect_to kit_path(@kit)
   end
 
   private
