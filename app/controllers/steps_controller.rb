@@ -2,7 +2,14 @@ class StepsController < ApplicationController
   before_action :set_kit, only: [ :new, :create, :show, :destroy ]
   before_action :set_step, only: [ :show, :edit, :update, :destroy ]
 
+  def index
+    @steps = Step.all
+    @kit = Kit.find(params[:kit_id])
+    @share_url = "#{request.base_url}/kits/#{@kit.id}"
+  end
+
   def new
+    @kit = Kit.find(params[:kit_id])
     @step = Step.new
   end
 
@@ -10,7 +17,7 @@ class StepsController < ApplicationController
     @step = Step.new(step_params)
     @step.kit = @kit
     if @step.save
-      redirect_to kit_path(@kit)
+      redirect_to kit_step_path(@kit, @step)
     else
       render :new
     end
