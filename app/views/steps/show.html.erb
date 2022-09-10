@@ -1,5 +1,12 @@
 <h2><%= @step.title %></h2>
 <p><%= @step.content %></p>
+<p>
+  <% if @step.photo.key? %>
+    <%= cl_image_tag @step.photo.key, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <%= image_tag 'https://images.unsplash.com/photo-1662184912775-4e5bf79e7112?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60', height: 300, width: 400, crop: :fill %>
+  <% end %>
+</p>
 <%= link_to '< Back', kit_path(@step.kit_id) %> |
 <%= link_to 'Edit', edit_step_path(@step) %> |
 <%= link_to 'Delete', kit_step_path(@kit, @step), method: :delete %>

@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Custo gems
 gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.16.0'
 
 gem 'net-smtp', require: false
 gem 'net-pop', require: false

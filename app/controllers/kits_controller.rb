@@ -3,6 +3,7 @@ class KitsController < ApplicationController
 
   def index
     @kits = Kit.all
+    @user = current_user
   end
 
   def show
@@ -47,6 +48,6 @@ class KitsController < ApplicationController
 
   # TODO: to add image to strong params
   def kit_params
-    params.require(:kit).permit(:title, :description)
+    params.require(:kit).permit(:title, :description, :photo)
   end
 end
