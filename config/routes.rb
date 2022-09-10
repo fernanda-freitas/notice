@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :steps, only: [:new, :create, :show, :destroy]
   end
   resources :steps, except: [:new, :create, :show] do
-    resources :tasks, only: [:new, :create]
+    resources :tasks, only: [:new, :create, :destroy]
   end
-  resources :tasks, only: [:destroy], as: :destroy_task
 end
