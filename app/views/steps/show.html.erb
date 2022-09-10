@@ -4,7 +4,7 @@
 <ul>
   <% @tasks.each do |task| %>
     <li>
-      <p><%= task.content %></p>
+      <p><%= task.content %> (<%= link_to 'Delete', step_task_path(@step.id, task.id), method: :delete %>)</p>
     </li>
   <% end %>
 </ul>

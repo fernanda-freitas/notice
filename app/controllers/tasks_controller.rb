@@ -17,6 +17,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @step = Step.find(params[:step_id])
+    @kit = @step.kit_id
+    @task.destroy
+    redirect_to kit_step_path(@kit, @step)
+  end
+
   private
 
   def task_params
