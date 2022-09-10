@@ -18,6 +18,7 @@ class StepsController < ApplicationController
 
   def show
     # Before action
+    @tasks = Task.where(:step_id => @step)
   end
 
   def edit
