@@ -1,0 +1,5 @@
+<h1>Add a task</h1>
+<%= simple_form_for [ @step, @task ] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit 'Submit' %>
+<% end %>
