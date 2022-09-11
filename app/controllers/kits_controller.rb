@@ -8,6 +8,7 @@ class KitsController < ApplicationController
 
   def show
     @steps = Step.where(:kit_id => @kit)
+    @kit_url = "#{request.base_url}/kits/#{@kit.id}"
   end
 
   def new

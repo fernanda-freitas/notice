@@ -1,21 +1,28 @@
-<h2><%= @kit.title %></h2>
-<p><%= @kit.description %></p>
-<h3>Steps</h3>
-<ul>
-  <% counter = 1 %>
-  <% @steps.each do |step| %>
-    <li>
-      <p>Step <%= counter %>: <%= step.title %></p>
-      <p><small><%= step.content %> (<%= link_to 'See details', kit_step_path(@kit, step), class: "text-primary" %>)</small></p>
-      <% if step.photo.key? %>
-        <%= cl_image_tag step.photo.key, height: 300, width: 400, crop: :fill %>
-      <% else %>
-        <p>WAIT: the image didn't show up!</p>
-      <% end %>
-    </li>
-    <% counter += 1 %>
-  <% end %>
-</ul>
-<p><%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %></p>
-<%= link_to 'Edit', edit_kit_path(@kit.id) %> |
-<%= link_to 'Delete', @kit, method: :delete %>
+<div class="row">
+  <div class="col-md-6">
+    <h2><%= @kit.title %></h2>
+    <p>Description: <%= @kit.description %></p>
+    <% counter = 1 %>
+    <% @steps.each do |step| %>
+        <p>Step <%= counter %>: <%= step.title %></p>
+        <p><small><%= step.content %> (<%= link_to 'See details', kit_step_path(@kit, step), class: "text-primary" %>)</small></p>
+        <% if step.photo.key? %>
+          <%= cl_image_tag step.photo.key, height: 300, width: 400, crop: :fill %>
+        <% else %>
+          <p>WAIT: the image didn't show up!</p>
+        <% end %>
+      <% counter += 1 %>
+    <% end %>
+    <p><%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %></p>
+    <%= link_to 'Edit', edit_kit_path(@kit.id) %> |
+    <%= link_to 'Delete', @kit, method: :delete %>
+  </div>
+  <div class="col-md-6">
+    <h4>Share it</h4>
+    <div data-controller="clipboard" class="input-group mb-3">
+      <div class="input-group-text bg-transparent"><i class="fa fa-copy"></i></div>
+      <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
+      <button data-action="click->clipboard#copy" class="btn btn-outline-primary" type="button">Copy</button>
+    </div>
+  </div>
+</div>
