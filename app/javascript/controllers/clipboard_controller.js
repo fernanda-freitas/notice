@@ -1,12 +1,13 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "input" ]
+  static targets = [ "input", "copy", "check", "button" ]
 
-  copy(event) {
+
+  copy() {
     const urlToShare = this.inputTarget.value;
     navigator.clipboard.writeText(urlToShare);
-    event.currentTarget.disabled = true;
-    event.currentTarget.innerText = "Copied!";
+    this.copyTarget.src = "/assets/icon-check.svg";
+    this.buttonTarget.setAttribute("data-tooltip", "Copied")
   }
 }
