@@ -1,0 +1,11 @@
+.form-control {
+  background-color: white;
+  border: 1px solid $light-gray;
+  border-radius: 8px;
+}
+
+.form-control:focus {
+  background-color: white;
+  border: 1px solid darken($color: $light-gray, $amount: 15);
+  box-shadow: none;
+}

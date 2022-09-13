@@ -1,12 +1,27 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 // Define fonts for body and headers
-$body-font: "Inter", "Helvetica", "sans-serif";
-$headers-font: "Inter", "Helvetica", "sans-serif";
+$headers-font: 'Poppins', sans-serif;
+$body-font: 'Roboto', sans-serif;
+
+h1, h2 {
+  font-weight: 700 !important;
+  color: $dark-gray;
+}
+
+h3 {
+  font-weight: 500 !important;
+  font-size: 1.3rem !important;
+}
+
+p {
+  color: $medium-gray;
+}
 
 a {
-  color: rgb(47, 47, 47) !important;
+  color: $dark-gray !important;
   text-decoration: none !important;
 }
 
