@@ -1,5 +1,5 @@
 class StepsController < ApplicationController
-  before_action :set_kit, only: [ :show, :destroy ]
+  before_action :set_kit, only: [ :new, :create, :show, :destroy ]
   before_action :set_step, only: [ :show, :edit, :update, :destroy ]
 
   def new
