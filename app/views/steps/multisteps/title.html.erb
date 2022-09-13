@@ -1,0 +1,5 @@
+<h1>Add a title</h1>
+<%= simple_form_for(@step), method: :put, url: wizard_path do |f| %>
+  <%= f.input :title %>
+  <%= f.submit 'Submit' %>
+<% end %>

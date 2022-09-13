@@ -1,5 +1,5 @@
 class StepsController < ApplicationController
-  before_action :set_kit, only: [ :new, :create, :show, :destroy ]
+  before_action :set_kit, only: [ :show, :destroy ]
   before_action :set_step, only: [ :show, :edit, :update, :destroy ]
 
   def new
@@ -7,13 +7,10 @@ class StepsController < ApplicationController
   end
 
   def create
-    @step = Step.new(step_params)
+    @step = Step.new
     @step.kit = @kit
-    if @step.save
-      redirect_to kit_path(@kit)
-    else
-      render :new
-    end
+    @step.save(validate: false)
+    redirect_to step_multistep_path(@step, Step.steps.first)
   end
 
   def show

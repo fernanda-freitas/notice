@@ -13,7 +13,8 @@
         <% end %>
       <% counter += 1 %>
     <% end %>
-    <p><%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %></p>
+    <br>
+    <p><%= link_to 'New step', steps_path, method: :post, class: "btn btn-primary" %></p>
     <%= link_to 'Edit', edit_kit_path(@kit.id) %> |
     <%= link_to 'Delete', @kit, method: :delete %>
   </div>
