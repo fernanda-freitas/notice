@@ -1,6 +1,6 @@
 // Graphical variables
-@import "config/fonts";
 @import "config/colors";
+@import "config/fonts";
 @import "config/bootstrap_variables";
 @import "config/containers";
 
@@ -12,8 +12,9 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "components/card";
+@import "components/cards";
 @import "components/list";
 @import "components/form";
 @import "components/icon";
 @import "components/tooltip";
+@import "components/buttons";
