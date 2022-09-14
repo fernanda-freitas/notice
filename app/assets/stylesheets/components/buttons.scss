@@ -6,3 +6,16 @@
   padding: 10px 24px;
   font-family: 'Poppins', sans-serif;
 }
+
+.btn-secondary, a.btn-secondary {
+  background-color: transparent;
+  border: 1px solid $light-gray;
+  border-radius: 8px;
+  color: $dark-gray !important;
+  padding: 10px 24px;
+  font-family: 'Poppins', sans-serif;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
