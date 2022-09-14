@@ -9,3 +9,24 @@
   border: 1px solid darken($color: $light-gray, $amount: 15);
   box-shadow: none;
 }
+
+.input-group {
+  position: relative;
+  max-width: 400px;
+  height: 46px;
+
+  .form-control {
+    border-radius: 8px !important;
+  }
+
+  .form-button {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    right: 3rem;
+
+    img:hover {
+      filter: invert(30%) sepia(51%) saturate(2878%) hue-rotate(219deg) brightness(104%) contrast(97%);
+    }
+  }
+}
