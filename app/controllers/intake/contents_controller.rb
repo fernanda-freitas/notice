@@ -26,7 +26,7 @@ module Intake
         # clean up the session.
         session.delete('title')
 
-        redirect_to kits_path
+        redirect_to kit_path(@kit)
       else
         render :new
       end

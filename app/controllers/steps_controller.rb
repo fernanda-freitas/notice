@@ -10,7 +10,7 @@ class StepsController < ApplicationController
     @step = Step.new(step_params)
     @step.kit = @kit
     if @step.save
-      redirect_to kit_path(@kit)
+      redirect_to new_step_task_path(@step)
     else
       render :new
     end
@@ -28,7 +28,7 @@ class StepsController < ApplicationController
   def update
     @kit = @step.kit_id
     if @step.update(step_params)
-      redirect_to kit_path(@kit)
+      redirect_to kit_path(@step)
     else
       render :edit
     end
