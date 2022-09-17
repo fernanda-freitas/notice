@@ -7,13 +7,11 @@ class StepsController < ApplicationController
   end
 
   def create
-    @step = Step.new(step_params)
+    @step = Step.new
     @step.kit = @kit
-    if @step.save
-      redirect_to kit_path(@kit)
-    else
-      render :new
-    end
+    @step.save(validate: false)
+    redirect_to kit_step_multistep_path(@kit, @step, Step.form_steps.first)
+    # redirect_to step_multistep_show_path(Step.form_steps.first)
   end
 
   def show

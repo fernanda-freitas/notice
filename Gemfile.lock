@@ -6,6 +6,13 @@ GIT
       actionpack (>= 5.2)
       activemodel (>= 5.2)
 
+GIT
+  remote: https://github.com/schneems/wicked.git
+  revision: 439b39fb49c9a400982aa40f1775ca3ac49fffb9
+  specs:
+    wicked (2.0.0)
+      railties (>= 3.0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -320,6 +327,7 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
+  wicked!
 
 RUBY VERSION
    ruby 3.1.2p20
