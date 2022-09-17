@@ -1,12 +1,14 @@
 <div class="row">
   <div class="col-md-6">
-    <div class="mb-4">
-      <%= link_to edit_kit_path(@kit.id) do %>
-        <%= image_tag "icon-edit.svg", class:"icon-md" %>
-      <% end %>
-      <%= link_to @kit, method: :delete do %>
-        <%= image_tag "icon-trash.svg", class:"icon-md" %>
-      <% end %>
+    <% if @kit.user == current_user %>
+      <div class="mb-4">
+        <%= link_to edit_kit_path(@kit.id) do %>
+          <%= image_tag "icon-edit.svg", class:"icon-md" %>
+        <% end %>
+        <%= link_to @kit, method: :delete do %>
+          <%= image_tag "icon-trash.svg", class:"icon-md" %>
+        <% end %>
+    <% end %>
     </div>
     <h2><%= @kit.title %></h2>
     <p><%= @kit.description %></p>
@@ -21,16 +23,20 @@
         <% end %>
       <% counter += 1 %>
     <% end %>
-    <%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %>
+    <% if @kit.user == current_user %>
+      <%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %>
+    <% end %>
   </div>
 
-  <div class="col-md-6">
-    <h4>Share it</h4>
-    <div data-controller="clipboard"class="input-group">
-      <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
-      <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
-        <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>
-      </button>
+  <% if @kit.user == current_user %>
+    <div class="col-md-6">
+      <h4>Share it</h4>
+        <div data-controller="clipboard"class="input-group">
+          <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
+            <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
+          <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>
+          </button>
+        </div>
     </div>
-  </div>
+  <% end %>
 </div>
