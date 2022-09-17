@@ -1,5 +1,6 @@
 class KitsController < ApplicationController
   before_action :set_kit, only: [ :show, :edit, :update, :destroy ]
+  skip_before_action :authenticate_user!, only: [ :show ]
 
   def index
     @kits = Kit.all
