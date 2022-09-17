@@ -10,7 +10,7 @@ class StepsController < ApplicationController
     @step = Step.new
     @step.kit = @kit
     @step.save(validate: false)
-    redirect_to step_multistep_path(@step, Step.steps.first)
+    redirect_to kit_step_multistep_path(@kit, @step, Step.form_steps.first)
   end
 
   def show

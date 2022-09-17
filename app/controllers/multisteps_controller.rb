@@ -1,6 +1,6 @@
-class Step::MultistepsController
+class Step::MultistepsController < ApplicationController
   include Wicked::Wizard
-  steps *Step.form_multisteps
+  steps :title, :content, :media
 
   def show
     @step = Step.find(params[:step_id])
