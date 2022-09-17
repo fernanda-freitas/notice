@@ -3,6 +3,7 @@ module Intake
     def new
       # An instance of Title is created just the
       # same as you would for any Active Record object.
+      @kit = Kit.find(params[:kit_id])
       @title = Title.new
     end
 
@@ -10,6 +11,7 @@ module Intake
       # Again, an instance of UserProfile is created
       # just the same as you would for any Active
       # Record object.
+      @kit = Kit.find(params[:kit_id])
       @title = Title.new(title_params)
 
       # The valid? method is also called just the same
@@ -23,7 +25,7 @@ module Intake
           'title' => @title.title,
         }
 
-        redirect_to new_intake_content_path
+        redirect_to new_kit_intake_content_path(@kit)
       else
         render :new
       end

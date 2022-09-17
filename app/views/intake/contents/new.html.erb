@@ -1,0 +1,6 @@
+<h2>Content Information</h2>
+
+<%= simple_form_for [ @kit, @content ] do |f| %>
+  <%= f.input :content %>
+  <%= f.submit 'Save and finish', class: 'btn btn-primary' %>
+<% end %>
