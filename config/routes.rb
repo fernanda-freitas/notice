@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   resources :steps, except: [:new, :create, :show, :destroy] do
     resources :tasks, only: [:new, :create, :destroy]
   end
+  namespace :intake do
+    resources :title, only: %i[new create]
+    resources :content, only: %i[new create]
+  end
 end
