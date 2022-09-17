@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   def new
     @step = Step.find(params[:step_id])
     @task = Task.new
+    authorize @task
   end
 
   def create
@@ -10,6 +11,7 @@ class TasksController < ApplicationController
     @step = Step.find(params[:step_id])
     @kit = @step.kit_id
     @task.step = @step
+    authorize @task
     if @task.save
       redirect_to kit_step_path(@kit, @step)
     else
@@ -22,6 +24,7 @@ class TasksController < ApplicationController
     @step = Step.find(params[:step_id])
     @kit = @step.kit_id
     @task.destroy
+    authorize @task
     redirect_to kit_step_path(@kit, @step)
   end
 

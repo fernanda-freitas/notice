@@ -11,11 +11,16 @@
 <ul>
   <% @tasks.each do |task| %>
     <li>
-      <p><%= task.content %> (<%= link_to 'Delete', step_task_path(@step.id, task.id), method: :delete %>)</p>
+      <p><%= task.content %>
+      <% if @kit.user == current_user %>
+        (<%= link_to 'Delete', step_task_path(@step.id, task.id), method: :delete %>)</p>
+      <% end %>
     </li>
   <% end %>
 </ul>
-<p><%= link_to 'New task', new_step_task_path(@step), class: "btn btn-primary" %></p>
-<%= link_to '< Back', kit_path(@step.kit_id) %> |
-<%= link_to 'Edit', edit_step_path(@step) %> |
-<%= link_to 'Delete', kit_step_path(@kit, @step), method: :delete %>
+<% if @kit.user == current_user %>
+  <p><%= link_to 'New task', new_step_task_path(@step), class: "btn btn-primary" %></p>
+  <%= link_to '< Back', kit_path(@step.kit_id) %> |
+  <%= link_to 'Edit', edit_step_path(@step) %> |
+  <%= link_to 'Delete', kit_step_path(@kit, @step), method: :delete %>
+<% end %>
