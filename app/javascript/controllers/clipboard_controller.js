@@ -7,8 +7,7 @@ export default class extends Controller {
   copy() {
     const urlToShare = this.inputTarget.value;
     navigator.clipboard.writeText(urlToShare);
-    const attachedRegex = /\w/;
-    this.copyTarget.src = `/assets/icon-check.svg${attachedRegex}`;
+    this.copyTarget.src = document.querySelector("#check").innerHTML;
     this.buttonTarget.setAttribute("data-tooltip", "Copied")
   }
 }
