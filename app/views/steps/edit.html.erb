@@ -1,6 +1,8 @@
-<%= simple_form_for [ @kit, @step ] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :content %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit 'Update' %>
-<% end %>
+<div class="custom-container">
+  <%= simple_form_for [ @kit, @step ] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :content %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit 'Update' %>
+  <% end %>
+</div>
