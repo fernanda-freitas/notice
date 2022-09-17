@@ -1,12 +1,14 @@
 <div class="row">
   <div class="col-md-6">
-    <div class="mb-4">
-      <%= link_to edit_kit_path(@kit.id) do %>
-        <%= image_tag "icon-edit.svg", class:"icon-md" %>
-      <% end %>
-      <%= link_to @kit, method: :delete do %>
-        <%= image_tag "icon-trash.svg", class:"icon-md" %>
-      <% end %>
+    <% if @kit.user == current_user %>
+      <div class="mb-4">
+        <%= link_to edit_kit_path(@kit.id) do %>
+          <%= image_tag "icon-edit.svg", class:"icon-md" %>
+        <% end %>
+        <%= link_to @kit, method: :delete do %>
+          <%= image_tag "icon-trash.svg", class:"icon-md" %>
+        <% end %>
+    <% end %>
     </div>
     <h2><%= @kit.title %></h2>
     <p><%= @kit.description %></p>
@@ -47,5 +49,5 @@
         </button>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

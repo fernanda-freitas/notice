@@ -4,11 +4,13 @@ class StepsController < ApplicationController
 
   def new
     @step = Step.new
+    authorize @step
   end
 
   def create
     @step = Step.new(step_params)
     @step.kit = @kit
+    authorize @step
     if @step.save
       redirect_to kit_path(@kit)
     else
@@ -19,6 +21,7 @@ class StepsController < ApplicationController
   def show
     # Before action
     @tasks = Task.where(:step_id => @step)
+    authorize @step
   end
 
   def edit
@@ -37,6 +40,7 @@ class StepsController < ApplicationController
   def destroy
     @step.destroy
     redirect_to kit_path(@kit)
+    authorize @step
   end
 
   private
@@ -47,6 +51,7 @@ class StepsController < ApplicationController
 
   def set_step
     @step = Step.find(params[:id])
+    authorize @step
   end
 
   def step_params
