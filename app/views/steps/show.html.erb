@@ -11,7 +11,10 @@
 <ul>
   <% @tasks.each do |task| %>
     <li>
-      <p><%= task.content %> (<%= link_to 'Delete', step_task_path(@step.id, task.id), method: :delete %>)</p>
+      <p><%= task.content %>
+      <% if @kit.user == current_user %>
+        (<%= link_to 'Delete', step_task_path(@step.id, task.id), method: :delete %>)</p>
+      <% end %>
     </li>
   <% end %>
 </ul>
