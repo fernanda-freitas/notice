@@ -8,7 +8,7 @@ class KitPolicy < ApplicationPolicy
   end
 
   def create?
-    return true
+    record.user == user
   end
 
   def show?
