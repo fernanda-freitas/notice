@@ -1,8 +1,8 @@
-<%= simple_form_for @kit do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit 'Submit' %>
-<% end %>
-
-<!-- TODO : to add image upload if we would like.. >
+<div class="custom-container">
+  <%= simple_form_for @kit do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit 'Submit' %>
+  <% end %>
+</div>

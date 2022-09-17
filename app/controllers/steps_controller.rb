@@ -21,6 +21,8 @@ class StepsController < ApplicationController
   def show
     # Before action
     @tasks = Task.where(:step_id => @step)
+    @steps = Step.where(kit_id: @kit)
+    @step = Step.find(params[:id])
     authorize @step
   end
 

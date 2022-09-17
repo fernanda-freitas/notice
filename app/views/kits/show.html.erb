@@ -1,59 +1,61 @@
-<div class="row">
-  <div class="col-md-6">
-    <% if @kit.user == current_user %>
-      <div class="mb-4">
-        <%= link_to edit_kit_path(@kit.id) do %>
-          <%= image_tag "icon-edit.svg", class:"icon-md" %>
-        <% end %>
-        <%= link_to @kit, method: :delete do %>
-          <%= image_tag "icon-trash.svg", class:"icon-md" %>
-        <% end %>
-    <% end %>
-    </div>
-    <h2><%= @kit.title %></h2>
-    <p><%= @kit.description %></p>
-    <% counter = 1 %>
-    <div class="row">
-      <% @steps.each do |step| %>
-        <div class="col-md-6 px-0">
-          <div class="wrapper-compact-card">
-            <%= link_to edit_step_path(step), class:"edit-button" do %>
-              <%= image_tag 'icon-edit.svg', class:"icon-sm" %>
-            <% end %>
-          </div>
-          <%= link_to kit_step_path(@kit, step) do %>
-            <div class="compact-card mx-2 mt-4">
-              <h5 class="card-title"><%= counter %> - <%= step.title %></h5>
-              <% if step.photo.key? %>
-                <%= cl_image_tag step.photo.key, class:"card-image" %>
-              <% else %>
-                <%= image_tag "https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60", class:"card-image" %>
+<div class="custom-container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <% if @kit.user == current_user %>
+        <div class="mb-4">
+          <%= link_to edit_kit_path(@kit.id) do %>
+            <%= image_tag "icon-edit.svg", class:"icon-md" %>
+          <% end %>
+          <%= link_to @kit, method: :delete do %>
+            <%= image_tag "icon-trash.svg", class:"icon-md" %>
+          <% end %>
+      <% end %>
+      </div>
+      <h2><%= @kit.title %></h2>
+      <p><%= @kit.description %></p>
+      <% counter = 1 %>
+      <div class="row">
+        <% @steps.each do |step| %>
+          <div class="col-md-6 px-0">
+            <div class="wrapper-compact-card">
+              <%= link_to edit_step_path(step), class:"edit-button" do %>
+                <%= image_tag 'icon-edit.svg', class:"icon-sm" %>
               <% end %>
             </div>
-          <% end %>
-        </div>
-        <% counter += 1 %>
-      <% end %>
-    </div>
-    <div class="d-flex">
-      <% if @kit.user == current_user %>
-        <%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary mt-4 ms-auto" %>
-      <% end %>
-    </div>
-  </div>
-  <div class="col-md-5 offset-md-1 d-flex">
-    <% if @kit.user == current_user %>
-      <div class="share-link">
-        <h4>Share it</h4>
-        <div data-controller="clipboard"class="input-group">
-          <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
-          <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
-            <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>
-          </button>
-        </div>
+            <%= link_to kit_step_path(@kit, step) do %>
+              <div class="compact-card mx-2 mt-4">
+                <h5 class="card-title"><%= counter %> - <%= step.title %></h5>
+                <% if step.photo.key? %>
+                  <%= cl_image_tag step.photo.key, class:"card-image" %>
+                <% else %>
+                  <%= image_tag "https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60", class:"card-image" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <% counter += 1 %>
+        <% end %>
       </div>
-    <% end %>
+      <div class="d-flex">
+        <% if @kit.user == current_user %>
+          <%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary mt-4 ms-auto" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-5 offset-md-1 d-flex">
+      <% if @kit.user == current_user %>
+        <div class="share-link">
+          <h4>Share it</h4>
+          <div data-controller="clipboard"class="input-group">
+            <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
+            <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
+              <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="half-right-background"></div>
   </div>
-  <div class="half-right-background"></div>
+  <span id="check" class="d-none"><%= asset_path('icon-check.svg') %></span>
 </div>
-<span id="check" class="d-none"><%= asset_path('icon-check.svg') %></span>
