@@ -24,13 +24,15 @@
     <%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %>
   </div>
 
-  <div class="col-md-6">
-    <h4>Share it</h4>
-    <div data-controller="clipboard"class="input-group">
-      <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
-      <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
-        <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>
-      </button>
+  <% if policy(Kit).show? %>
+    <div class="col-md-6">
+      <h4>Share it</h4>
+      <div data-controller="clipboard"class="input-group">
+        <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
+        <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
+          <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>
+        </button>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

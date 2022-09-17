@@ -1,6 +1,6 @@
 class Step < ApplicationRecord
   belongs_to :kit
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   has_one_attached :photo
 
   validates :title, presence: true, length: { in: 8..96 }
