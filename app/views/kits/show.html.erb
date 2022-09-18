@@ -50,7 +50,11 @@
           <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
             <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %> </button>
         </div>
-        <%= link_to 'Send by Email', class: "btn btn-primary mt-4 ms-auto" %>
+        <div>
+          <h5>Emails</h5>
+          <input type="text" class="form-control" value="", placeholder= "Type Email address">
+          <%= link_to 'Send by Email', new_kit_step_path(@kit), class: "btn btn-primary mt-4 ms-auto" %>
+        </div>
       </div>
     <% end %>
   </div>
