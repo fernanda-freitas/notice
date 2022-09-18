@@ -56,4 +56,9 @@ class KitsController < ApplicationController
   def kit_params
     params.require(:kit).permit(:title, :description, :photo)
   end
+
+  def sharekit
+    UserMailer.welcome(user_email).deliver_now
+  end
+
 end

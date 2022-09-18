@@ -5,11 +5,13 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.welcome.subject
   #
-  def welcome
-    @greeting = "Hi"
+  def sharekit(user_email)
     @company_name = company_name
-    @user = params[:user] # Instance variable => available in view
-    mail(to: @user.email, subject: "Welcome to #{ @company_name} ")
+    @user_email = params[:email] # Instance variable => available in view
+    mail(to: @user_email.email, subject: "Welcome to #{ @company_name} ")
     # This will render a view in `app/views/user_mailer`!
   end
 end
+
+
+# TODO params not fixed

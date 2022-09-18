@@ -1,9 +1,9 @@
 class KitMailer < ApplicationMailer
-  def create_confirmation
+  def sharekit
     @kit = params[:kit]
     mail(
       to:       @kit.user.email,
-      subject:  "Restaurant #{@restaurant.name} created!"
+      subject:  "Welcome!"
     )
   end
 end
