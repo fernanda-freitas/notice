@@ -20,13 +20,14 @@ module Intake
 
         # Here we finally carry out the ultimate objective:
         # creating a User record in the database.
-        Step.create!(full_params)
+        @step = Step.new(full_params)
+        @step.save!
 
         # Upon successful completion of the form we need to
         # clean up the session.
         session.delete('title')
 
-        redirect_to kit_path(@kit)
+        redirect_to add_media_step_path(@step)
       else
         render :new
       end
