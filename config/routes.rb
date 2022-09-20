@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   resources :steps, except: [:new, :create, :show, :destroy] do
     resources :tasks, only: [:new, :create, :destroy]
     member do
-      get :add_media, :save_media
+      get :add_media
+      patch :save_media
     end
   end
 end
