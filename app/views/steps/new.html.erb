@@ -1,8 +1,9 @@
-<h1>Add a step</h1>
-
-<%= simple_form_for [ @kit, @step ] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :content %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit 'Submit' %>
-<% end %>
+<div class="custom-container">
+  <h1>Add a step</h1>
+  <%= simple_form_for [ @kit, @step ] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :content %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit 'Submit' %>
+  <% end %>
+</div>

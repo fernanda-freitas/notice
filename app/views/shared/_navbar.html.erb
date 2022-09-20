@@ -1,4 +1,4 @@
-<div class="container navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="custom-container navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "icon-logo.svg" %>
   <% end %>
@@ -12,7 +12,9 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+            <span class="me-2">logout</span>
+          <% end %>
         </li>
       <% else %>
         <li class="nav-item">
