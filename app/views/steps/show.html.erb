@@ -6,7 +6,7 @@
       <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
     <% end %>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-5 px-5">
     <div class="d-flex justify-content-between mt-5">
       <% @steps.each_with_index do |step, index| %>
         <% if @step.id == step.id %>
@@ -16,10 +16,10 @@
       <% if @kit.user == current_user %>
         <div>
           <%= link_to kit_path(@step.kit_id) do %>
-            <%= image_tag "icon-back.svg", class:"icon-md" %>
+            <%= image_tag "icon-back.svg", class:"icon-md me-2" %>
           <% end %>
           <%= link_to edit_step_path(@step) do %>
-            <%= image_tag "icon-edit.svg", class:"icon-md" %>
+            <%= image_tag "icon-edit.svg", class:"icon-md me-2" %>
           <% end %>
           <%= link_to kit_step_path(@kit, @step), method: :delete do %>
             <%= image_tag "icon-trash.svg", class:"icon-md" %>
@@ -28,15 +28,18 @@
       <% end %>
     </div>
     <h2 class="mt-5"><%= @step.title %></h2>
-    <p><%= @step.content %></p>
+    <p class="mt-3"><%= @step.content %></p>
     <div class="mt-5">
-      <h3>To do's</h3>
-      <ul>
+      <h3 class="mb-4">To do's</h3>
+      <ul class="todos-list">
         <% @tasks.each do |task| %>
-          <li>
-            <p><%= task.content %>
+          <li class="d-flex align-items-center mt-3">
+            <input type="checkbox" name="" value="" checked>
+            <p class="ms-2 mb-0"><%= task.content %></p>
             <% if @kit.user == current_user %>
-              (<%= link_to 'Delete', step_task_path(@step.id, task.id), method: :delete %>)</p>
+              <%= link_to step_task_path(@step.id, task.id), method: :delete do %>
+                <%= image_tag "icon-trash.svg", class:"icon-md ms-3" %>
+              <% end %>
             <% end %>
           </li>
         <% end %>
