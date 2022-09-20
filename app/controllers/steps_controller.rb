@@ -1,18 +1,18 @@
 class StepsController < ApplicationController
   before_action :set_kit, only: [ :new, :create, :show, :destroy ]
-  before_action :set_step, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_step, only: [ :show, :edit, :update, :add_media, :save_media, :destroy ]
 
-  def new
-    @step = Step.new
-    authorize @step
-  end
+  # def new
+  #   @step = Step.new
+  #   authorize @step
+  # end
 
   def create
     @step = Step.new(step_params)
     @step.kit = @kit
     authorize @step
     if @step.save
-      redirect_to kit_path(@kit)
+      redirect_to new_step_task_path(@step)
     else
       render :new
     end
@@ -31,11 +31,25 @@ class StepsController < ApplicationController
   end
 
   def update
-    @kit = @step.kit_id
+    # Before action
+    @kit = @step.kit
     if @step.update(step_params)
       redirect_to kit_path(@kit)
     else
       render :edit
+    end
+  end
+
+  def add_media
+    # Before action
+  end
+
+  def save_media
+    # Before action
+    if params[:step].nil? || @step.update(step_params)
+      redirect_to new_step_task_path(@step)
+    else
+      render :add_media
     end
   end
 

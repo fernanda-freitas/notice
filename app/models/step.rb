@@ -3,6 +3,6 @@ class Step < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_one_attached :photo
 
-  validates :title, presence: true, length: { in: 8..96 }
-  validates :content, presence: true, length: { in: 32..650 }
+  # validates :title, presence: true, length: { in: 8..96 }
+  # validates :content, presence: true, length: { in: 32..650 }
 end
