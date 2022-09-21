@@ -1,0 +1,6 @@
+<h1>Add pictures, videos or files to describe your step</h1>
+
+<%= simple_form_for @step, url: save_media_step_path(@step) do |f| %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit 'Next step', class: 'btn btn-primary' %>
+<% end %>

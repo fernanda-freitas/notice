@@ -1,0 +1,6 @@
+<h2>Title Information</h2>
+
+<%= simple_form_for [ @kit, @title ] do |f| %>
+  <%= f.input :title %>
+  <%= f.submit 'Next Step', class: 'btn btn-primary' %>
+<% end %>
