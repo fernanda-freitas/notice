@@ -15,13 +15,13 @@
       <% end %>
       <% if @kit.user == current_user %>
         <div>
-          <%= link_to kit_path(@step.kit_id) do %>
-            <%= image_tag "icon-back.svg", class:"icon-md me-2" %>
+          <%= link_to kit_path(@step.kit_id), class:"btn btn-link" do %>
+            <%= image_tag "icon-back.svg", class:"icon-md" %>
           <% end %>
-          <%= link_to edit_step_path(@step) do %>
-            <%= image_tag "icon-edit.svg", class:"icon-md me-2" %>
+          <%= link_to edit_step_path(@step), class:"btn btn-link" do %>
+            <%= image_tag "icon-edit.svg", class:"icon-md" %>
           <% end %>
-          <%= link_to kit_step_path(@kit, @step), method: :delete do %>
+          <%= link_to kit_step_path(@kit, @step), method: :delete, class:"btn btn-link" do %>
             <%= image_tag "icon-trash.svg", class:"icon-md" %>
           <% end %>
         </div>
@@ -30,24 +30,24 @@
     <h2 class="mt-5"><%= @step.title %></h2>
     <p class="mt-3"><%= @step.content %></p>
     <div class="mt-5">
-      <h3 class="mb-4">To do's</h3>
+      <h3 class="mb-4">To-do list</h3>
       <ul class="todos-list">
         <% @tasks.each do |task| %>
-          <li class="d-flex align-items-center mt-3">
+          <li class="d-flex align-items-center mt-2">
             <input type="checkbox" name="" value="" checked>
-            <p class="ms-2 mb-0"><%= task.content %></p>
+            <p class="mx-2 mb-0"><%= task.content %></p>
             <% if @kit.user == current_user %>
-              <%= link_to step_task_path(@step.id, task.id), method: :delete do %>
-                <%= image_tag "icon-trash.svg", class:"icon-md ms-3" %>
+              <%= link_to step_task_path(@step.id, task.id), method: :delete, class:"btn btn-link d-flex" do %>
+                <%= image_tag "icon-trash.svg", class:"icon-sm" %>
               <% end %>
             <% end %>
           </li>
         <% end %>
       </ul>
       <% if @kit.user == current_user %>
-        <%= link_to new_step_task_path(@step), class: "btn btn-link px-0" do %>
-          <%= image_tag "icon-add-task.svg", class:"icon-md" %>
-          <span>Add a new to do</span>
+        <%= link_to new_step_task_path(@step), class: "btn btn-link" do %>
+          <%= image_tag "icon-add-task.svg", class:"icon-sm" %>
+          <span>Add to-do</span>
         <% end %>
       <% end %>
     </div>
