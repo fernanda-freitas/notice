@@ -45,7 +45,9 @@ class KitsController < ApplicationController
     redirect_to root_path
   end
 
-  def send_kit(email, link)
+  def send_kit
+    email = params[:email]
+    link = params[:link]
     UserMailer.with(email: email, link: link).sharekit.deliver_now
   end
 
