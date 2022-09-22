@@ -3,11 +3,13 @@ module Intake
     def new
       @kit = Kit.find(params[:kit_id])
       @content = Content.new
+      authorize @kit
     end
 
     def create
       @kit = Kit.find(params[:kit_id])
       @content = Content.new(content_params)
+      authorize @kit
 
       if @content.valid?
 
