@@ -23,6 +23,7 @@ class StepsController < ApplicationController
     @tasks = Task.where(:step_id => @step)
     @steps = Step.where(kit_id: @kit)
     @step = Step.find(params[:id])
+    @task = Task.new
     authorize @step
   end
 

@@ -1,4 +1,4 @@
-<div class="custom-container mt-5">
+<div class="custom-container mt-5 pb-5">
   <div class="row">
     <div class="col-md-6">
       <% if @kit.user == current_user %>
@@ -39,7 +39,7 @@
       <div class="d-flex">
         <% if @kit.user == current_user %>
           <%# <%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %>
-          <%= link_to 'New step', new_kit_intake_title_path(@kit), class: "btn btn-primary" %>
+          <%= link_to 'New step', new_kit_intake_title_path(@kit), class: "btn btn-primary mt-4 ms-auto" %>
         <% end %>
       </div>
     </div>
@@ -47,7 +47,7 @@
       <% if @kit.user == current_user %>
         <div class="share-link">
           <h4>Share it</h4>
-          <div data-controller="clipboard"class="input-group">
+          <div data-controller="clipboard" class="input-group">
             <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
             <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
               <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>
