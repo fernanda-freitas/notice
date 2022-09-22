@@ -64,7 +64,7 @@
         <% end %>
       </ul>
       <div class="d-none" data-edit-task-target="form">
-        <%= render "tasks/new" %>
+        <%= render "shared/new_task" %>
       </div>
       <% if @kit.user == current_user %>
         <div class="btn btn-link" data-action="click->edit-task#displayForm">
