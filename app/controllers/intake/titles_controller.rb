@@ -5,6 +5,7 @@ module Intake
       # same as you would for any Active Record object.
       @kit = Kit.find(params[:kit_id])
       @title = Title.new
+      authorize @kit
     end
 
     def create
@@ -13,6 +14,7 @@ module Intake
       # Record object.
       @kit = Kit.find(params[:kit_id])
       @title = Title.new(title_params)
+      authorize @kit
 
       # The valid? method is also called just the same
       # as for any Active Record object.
