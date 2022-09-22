@@ -1,0 +1,4 @@
+<%= simple_form_for [ @step, @task ], data: { controller:"update-task", action:"submit->update-task#update" } do |f| %>
+  <%= f.input :content %>
+  <%= f.submit 'Submit' %>
+<% end %>

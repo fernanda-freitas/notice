@@ -1,15 +1,15 @@
 <div class="row step-show-wrapper">
   <div class="col-md-6">
     <%# If media == -file %>
-    <div class="media-file">
-      <div class="media-file-box">
-        <%= image_tag 'icon-file-download.svg', class:"icon-xl" %>
-        <h3>File to download</h3>
+    <%# <div class="media-file">
+      <div class="media-file-box"> %>
+        <%#= image_tag 'icon-file-download.svg', class:"icon-xl" %>
+        <%# <h3>File to download</h3>
         <p>file_name.pdf</p>
       </div>
-    </div>
+    </div> %>
     <%# If media == Video %>
-    <%# <div class="video-background">
+    <div class="video-background">
       <iframe
         src="https://www.youtube.com/embed/BJeg2Kta2wY?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1"
         title=""
@@ -17,7 +17,7 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
-    </div> %>
+    </div>
     <%# If media == Image %>
     <%# if @step.photo.key? %>
       <%#= cl_image_tag @step.photo.key, class:"step-show-image" %>
@@ -48,9 +48,9 @@
     </div>
     <h2 class="mt-5"><%= @step.title %></h2>
     <p class="mt-3"><%= @step.content %></p>
-    <div class="mt-5">
+    <div class="mt-5" data-controller="edit-task">
       <h3 class="mb-4">To-do list</h3>
-      <ul class="todos-list">
+      <ul class="todos-list" data-edit-task-target="list">
         <% @tasks.each do |task| %>
           <li class="d-flex align-items-center mt-2">
             <input type="checkbox" name="" value="" checked>
@@ -63,11 +63,18 @@
           </li>
         <% end %>
       </ul>
+      <div class="d-none" data-edit-task-target="form">
+        <%= render "tasks/new" %>
+      </div>
       <% if @kit.user == current_user %>
-        <%= link_to new_step_task_path(@step), class: "btn btn-link" do %>
+        <div class="btn btn-link" data-action="click->edit-task#displayForm">
           <%= image_tag "icon-add-task.svg", class:"icon-sm" %>
           <span>Add to-do</span>
-        <% end %>
+        </div>
+        <%#= link_to new_step_task_path(@step), class: "btn btn-link", data: { action: "click->edit-task#displayForm" } do %>
+          <%#= image_tag "icon-add-task.svg", class:"icon-sm" %>
+          <%# <span>Add to-do</span> %>
+        <%# end %>
       <% end %>
     </div>
   </div>
