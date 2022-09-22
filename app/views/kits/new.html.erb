@@ -1,8 +1,13 @@
-<div class="custom-container">
-  <%= simple_form_for @kit do |f| %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit 'Submit' %>
-  <% end %>
+  <div class="row">
+    <div class="d-flex">
+      <div class="custom-container" >
+        <h2>New welcome kit</h2>
+          <%= simple_form_for @kit do |f| %>
+          <%= f.input :title %>
+          <%= f.input :description %>
+          <%= f.input :photo, as: :file %>
+          <%= f.submit 'Create the first step', class: "btn btn-primary mx-auto" type: "button" %>
+        <% end %>
+    </div>
+  </div>
 </div>
