@@ -1,10 +1,29 @@
 <div class="row step-show-wrapper">
   <div class="col-md-6">
-    <% if @step.photo.key? %>
-      <%= cl_image_tag @step.photo.key, class:"step-show-image" %>
-    <% else %>
-      <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
-    <% end %>
+    <%# If media == -file %>
+    <div class="media-file">
+      <div class="media-file-box">
+        <%= image_tag 'icon-file-download.svg', class:"icon-xl" %>
+        <h3>File to download</h3>
+        <p>file_name.pdf</p>
+      </div>
+    </div>
+    <%# If media == Video %>
+    <%# <div class="video-background">
+      <iframe
+        src="https://www.youtube.com/embed/BJeg2Kta2wY?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1"
+        title=""
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div> %>
+    <%# If media == Image %>
+    <%# if @step.photo.key? %>
+      <%#= cl_image_tag @step.photo.key, class:"step-show-image" %>
+    <%# else %>
+      <%#= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
+    <%# end %>
   </div>
   <div class="col-md-5 px-5">
     <div class="d-flex justify-content-between mt-5">
