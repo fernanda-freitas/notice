@@ -45,6 +45,10 @@ class KitsController < ApplicationController
     redirect_to root_path
   end
 
+  def send_kit(email, link)
+    UserMailer.with(email: email, link: link).sharekit.deliver_now
+  end
+
   private
 
   def set_kit
@@ -55,10 +59,6 @@ class KitsController < ApplicationController
   # TODO: to add image to strong params
   def kit_params
     params.require(:kit).permit(:title, :description, :photo)
-  end
-
-  def sharekit
-    UserMailer.welcome(user_email).deliver_now
   end
 
 end

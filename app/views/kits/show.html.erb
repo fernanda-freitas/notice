@@ -43,19 +43,25 @@
   </div>
   <div class="col-md-5 offset-md-1 d-flex">
     <% if @kit.user == current_user %>
-      <div class="share-link">
-        <h4>Share it</h4>
-        <div data-controller="clipboard"class="input-group">
-          <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
-          <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
-            <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %> </button>
-        </div>
+      <% simple_form_for(kit) do |f| %>
+        <div class="share-link">
+          <h4>Share it</h4>
+            <div data-controller="clipboard"class="input-group">
+              <%= f.input :link, input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>"
+              < button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
+              < image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %> </button>
+            </div>
         <div>
           <h5>Emails</h5>
-          <input type="text" class="form-control" value="", placeholder= "Type Email address">
-          <%= link_to 'Send by Email', new_kit_step_path(@kit), class: "btn btn-primary mt-4 ms-auto" %>
+            <%= f.input :email, input type="text" class="form-control" value="", placeholder= "Type Email address">
+            <%= f.submit link_to 'Send by Email', send_kits_path, class: "btn btn-primary mt-4 ms-auto" %>
+          <% end %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+<!-- action=mailto: ..... " method="post" enctype="text/plain">
+
+< link - email doesnt axsist as a database, only as a form inputss>

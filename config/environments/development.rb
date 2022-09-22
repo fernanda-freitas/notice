@@ -36,6 +36,7 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :letter_opener
 
   # to open a before mail in the browser
   config.action_mailer.delivery_method = :stmp
