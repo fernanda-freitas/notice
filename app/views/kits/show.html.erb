@@ -51,3 +51,24 @@
     <% end %>
   </div>
 </div>
+
+<%= simple_form_for :user, url: users_path do |f| %>
+  <%= f.input :name, as: :string %>
+  ...
+<% end %>
+
+        <% simple_form_for :kit do |f| %>
+         <div class="share-link">
+          <h4>Share it</h4>
+            <div data-controller="clipboard"class="input-group">
+              <%= f.input :link, data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>"
+              <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
+              <% image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %> </button>
+            </div>
+        <div>
+          <h5>Emails</h5>
+            <%= f.input :email, type="text" class="form-control" value="", placeholder= "Type Email address" %>
+            <%= f.submit link_to 'Send by Email', send_kits_path, class: "btn btn-primary mt-4 ms-auto" %>
+          <% end %>
+        </div>
+      </div>
