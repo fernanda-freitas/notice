@@ -1,6 +1,7 @@
 class StepsController < ApplicationController
   before_action :set_kit, only: [ :new, :create, :show, :destroy ]
   before_action :set_step, only: [ :show, :edit, :update, :add_media, :save_media, :destroy ]
+  skip_before_action :authenticate_user!, only: [ :show ]
 
   # def new
   #   @step = Step.new
@@ -25,6 +26,9 @@ class StepsController < ApplicationController
     @step = Step.find(params[:id])
     @task = Task.new
     authorize @step
+
+    @prev = Step.where("id < ?", @step.id).order("id").last
+    @next = Step.where("id > ?", @step.id).order("id").first
   end
 
   def edit

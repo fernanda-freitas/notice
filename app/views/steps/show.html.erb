@@ -9,7 +9,7 @@
       </div>
     </div> %>
     <%# If media == Video %>
-    <div class="video-background">
+    <%# <div class="video-background">
       <iframe
         src="https://www.youtube.com/embed/BJeg2Kta2wY?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1"
         title=""
@@ -17,13 +17,13 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
-    </div>
+    </div> %>
     <%# If media == Image %>
-    <%# if @step.photo.key? %>
-      <%#= cl_image_tag @step.photo.key, class:"step-show-image" %>
-    <%# else %>
-      <%#= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
-    <%# end %>
+    <% if @step.photo.key? %>
+      <%= cl_image_tag @step.photo.key, class:"step-show-image" %>
+    <% else %>
+      <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
+    <% end %>
   </div>
   <div class="col-md-5 px-5">
     <div class="d-flex justify-content-between mt-5">
@@ -34,7 +34,7 @@
       <% end %>
       <% if @kit.user == current_user %>
         <div>
-          <%= link_to kit_path(@step.kit_id), class:"btn btn-link" do %>
+          <%= link_to :back, class:"btn btn-link" do %>
             <%= image_tag "icon-back.svg", class:"icon-md" %>
           <% end %>
           <%= link_to edit_step_path(@step), class:"btn btn-link" do %>
@@ -42,6 +42,28 @@
           <% end %>
           <%= link_to kit_step_path(@kit, @step), method: :delete, class:"btn btn-link" do %>
             <%= image_tag "icon-trash.svg", class:"icon-md" %>
+          <% end %>
+        </div>
+      <% end %>
+      <% if !user_signed_in? %>
+        <div>
+          <% if @prev %>
+            <%= link_to kit_step_path(@kit, @prev), class:"btn btn-link" do %>
+              <%= image_tag "icon-chevron-left.svg", class:"icon-md" %>
+            <% end %>
+            <% else %>
+            <%= link_to '', class:"btn btn-link #{@prev ? '' : 'opacity-25'}" do %>
+              <%= image_tag "icon-chevron-left.svg", class:"icon-md" %>
+            <% end %>
+          <% end %>
+          <% if @next %>
+            <%= link_to kit_step_path(@kit, @next), class:"btn btn-link" do %>
+              <%= image_tag "icon-chevron-right.svg", class:"icon-md" %>
+            <% end %>
+            <% else %>
+            <%= link_to '', class:"btn btn-link #{@next ? '' : 'opacity-25'}" do %>
+              <%= image_tag "icon-chevron-right.svg", class:"icon-md" %>
+            <% end %>
           <% end %>
         </div>
       <% end %>
@@ -73,5 +95,11 @@
         </div>
       <% end %>
     </div>
+    <% if @kit.user == current_user %>
+      <div class="d-flex justify-content-end">
+        <%= link_to 'New step', new_kit_intake_title_path(@kit), class: "btn btn-primary" %>
+        <%= link_to 'Done', kit_path(@kit), class: "btn btn-secondary ms-2" %>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -3,10 +3,13 @@
     <div class="col-md-6">
       <% if @kit.user == current_user %>
         <div class="mb-4">
-          <%= link_to edit_kit_path(@kit.id) do %>
+          <%= link_to :back, class:"btn btn-link" do %>
+            <%= image_tag "icon-back.svg", class:"icon-md" %>
+          <% end %>
+          <%= link_to edit_kit_path(@kit.id), class:"btn btn-link" do %>
             <%= image_tag "icon-edit.svg", class:"icon-md" %>
           <% end %>
-          <%= link_to @kit, method: :delete do %>
+          <%= link_to @kit, method: :delete, class:"btn btn-link" do %>
             <%= image_tag "icon-trash.svg", class:"icon-md" %>
           <% end %>
       <% end %>
