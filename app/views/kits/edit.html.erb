@@ -1,6 +1,13 @@
-<%= simple_form_for @kit do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
-<% end %>
+<div class="container-xl d-flex">
+  <div class="row w-100 px-2 m-auto">
+    <div class="col-xs-12 col-md-6 m-auto">
+      <h2 class="text-center">Edit "name of the kit"</h2>
+        <%= simple_form_for @kit do |f| %>
+          <%= f.input :title %>
+          <%= f.input :description %>
+          <%= f.input :photo, as: :file %>
+          <%= f.submit 'Update kit', class: "btn btn-primary w-100" %>
+        <% end %>
+    </div>
+  </div>
+</div>

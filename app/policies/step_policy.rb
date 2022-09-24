@@ -26,6 +26,14 @@ class StepPolicy < ApplicationPolicy
     return true
   end
 
+  def add_media?
+    return true
+   end
+
+  def save_media?
+    return true
+  end
+
   def destroy?
     return true
   end

@@ -1,29 +1,31 @@
-<h1>Hello, <%= @user.company_name %>!</h1>
-<ul class="row px-0">
-  <% @kits.each do |kit| %>
-    <li class="col-md-3 mt-4">
-      <%= link_to kit_path(kit) do %>
-        <div class="custom-card">
-          <% if kit.photo.key? %>
-            <%= cl_image_tag kit.photo.key, class: "card-image" %>
-          <% else %>
-            <%= image_tag 'https://images.unsplash.com/photo-1662184912775-4e5bf79e7112?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60', class:"card-image" %>
-          <% end %>
-          <div class="custom-card-body">
-            <h3 class="card-title"><%= kit.title %></h3>
-            <p><%= kit.description %></p>
+<div class="custom-container mt-5">
+  <h1>Hello, <%= @user.company_name %>!</h1>
+  <ul class="row px-0">
+    <% @kits.each do |kit| %>
+      <li class="col-md-3 mt-4">
+        <%= link_to kit_path(kit) do %>
+          <div class="custom-card">
+            <% if kit.photo.key? %>
+              <%= cl_image_tag kit.photo.key, class: "card-image" %>
+            <% else %>
+              <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"card-image" %>
+            <% end %>
+            <div class="custom-card-body">
+              <h3 class="card-title"><%= kit.title %></h3>
+              <p><%= kit.description %></p>
+            </div>
           </div>
+        <% end %>
+      </li>
+    <% end %>
+    <li class="col-md-3 mt-4">
+      <%= link_to new_kit_path do %>
+        <div class="custom-card add-new-card">
+            <div class="custom-card-body">
+              <%= image_tag 'icon-add.svg', class:"icon-add" %>
+            </div>
         </div>
       <% end %>
     </li>
-  <% end %>
-  <li class="col-md-3 mt-4">
-    <%= link_to new_kit_path do %>
-      <div class="custom-card add-new-card">
-          <div class="custom-card-body">
-            <%= image_tag 'icon-add.svg', class:"icon-add" %>
-          </div>
-      </div>
-    <% end %>
-  </li>
-</ul>
+  </ul>
+</div>

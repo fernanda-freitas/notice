@@ -23,7 +23,7 @@ class KitsController < ApplicationController
     @kit.user = current_user
     authorize @kit
     if @kit.save
-      redirect_to new_kit_step_path(@kit)
+      redirect_to new_kit_intake_title_path(@kit)
     else
       render :new
     end

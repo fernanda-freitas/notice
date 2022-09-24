@@ -3,15 +3,15 @@
     <div class="col-xs-12 col-md-6 m-auto text-center">
       <div class="pb-3">
         <p><strong>Step <%= @step_number %></strong></p>
-        <h2>Create a to-do list for your customer</h2>
+        <h2>Explain what your customer has to do</h2>
       </div>
-      <%= simple_form_for [ @step, @task ],
+      <%= simple_form_for [ @kit, @content ],
       wrapper: :floating_labels_form,
       wrapper_mappings: {
         select:        :floating_labels_select
       } do |f| %>
-        <%= f.input :content, label: 'Task' %>
-        <%= f.submit 'Finish & Save', class: 'btn btn-primary w-100' %>
+        <%= f.input :content, label: 'Description' %>
+        <%= f.submit 'Next', class: 'btn btn-primary w-100' %>
       <% end %>
     </div>
   </div>

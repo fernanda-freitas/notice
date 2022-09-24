@@ -7,8 +7,16 @@ Rails.application.routes.draw do
     member do
       post "send_kit", to: "kits#send_kit"
     end
+    namespace :intake do
+      resources :titles, only: [:new, :create]
+      resources :contents, only: [:new, :create]
+    end
   end
   resources :steps, except: [:new, :create, :show, :destroy] do
     resources :tasks, only: [:new, :create, :destroy]
+    member do
+      get :add_media
+      patch :save_media
+    end
   end
 end
