@@ -31,4 +31,8 @@ class KitPolicy < ApplicationPolicy
     return true
   end
 
+  def send_kit?
+    return true
+  end
+
 end

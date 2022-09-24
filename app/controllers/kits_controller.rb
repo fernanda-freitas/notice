@@ -1,5 +1,5 @@
 class KitsController < ApplicationController
-  before_action :set_kit, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_kit, only: [ :show, :edit, :update, :destroy, :send_kit ]
   skip_before_action :authenticate_user!, only: [ :show ]
 
   def index
@@ -46,8 +46,8 @@ class KitsController < ApplicationController
   end
 
   def send_kit
-    email = params[:email]
-    link = params[:link]
+    email = params[:kit][:email][:email]
+    link = params[:kit][:link]
     UserMailer.with(email: email, link: link).sharekit.deliver_now
   end
 
