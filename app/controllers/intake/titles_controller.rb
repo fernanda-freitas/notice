@@ -6,6 +6,13 @@ module Intake
       @kit = Kit.find(params[:kit_id])
       @title = Title.new
       authorize @kit
+
+      # Retrieving the number of the step to display it in the view
+      if @kit.steps
+        @step_number = @kit.steps.count + 1
+      else
+        @step_number = 1
+      end
     end
 
     def create

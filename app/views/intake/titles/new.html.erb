@@ -1,6 +1,18 @@
-<h2>Title Information</h2>
-
-<%= simple_form_for [ @kit, @title ] do |f| %>
-  <%= f.input :title %>
-  <%= f.submit 'Next Step', class: 'btn btn-primary' %>
-<% end %>
+<div class="container-xl d-flex">
+  <div class="row w-100 px-2 m-auto">
+    <div class="col-xs-12 col-md-6 m-auto text-center">
+      <div class="pb-3">
+        <p><strong>Step <%= @step_number %></strong></p>
+        <h2>Give a title to your step</h2>
+      </div>
+      <%= simple_form_for [ @kit, @title ],
+      wrapper: :floating_labels_form,
+      wrapper_mappings: {
+        select:        :floating_labels_select
+      } do |f| %>
+        <%= f.input :title %>
+        <%= f.submit 'Next', class: 'btn btn-primary w-100' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,10 @@ class TasksController < ApplicationController
     @step = Step.find(params[:step_id])
     @task = Task.new
     authorize @task
+
+    # Retrieving the number of the step to display it in the view
+    @kit = Kit.find(@step.kit_id)
+    @step_number = @kit.steps.count
   end
 
   def create
