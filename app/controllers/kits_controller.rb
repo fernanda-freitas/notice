@@ -49,6 +49,7 @@ class KitsController < ApplicationController
     email = params[:kit][:email][:email]
     link = params[:kit][:link]
     UserMailer.with(email: email, link: link).sharekit.deliver_now
+    # redirect_to kit_path(@kit)
   end
 
   private
