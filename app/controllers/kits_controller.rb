@@ -1,5 +1,5 @@
 class KitsController < ApplicationController
-  before_action :set_kit, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_kit, only: [ :show, :edit, :update, :destroy, :send_kit ]
   skip_before_action :authenticate_user!, only: [ :show ]
 
   def index
@@ -45,6 +45,13 @@ class KitsController < ApplicationController
     redirect_to root_path
   end
 
+  def send_kit
+    email = params[:kit][:email][:email]
+    link = params[:kit][:link]
+    UserMailer.with(email: email, link: link).sharekit.deliver_now
+    # redirect_to kit_path(@kit)
+  end
+
   private
 
   def set_kit
@@ -56,4 +63,5 @@ class KitsController < ApplicationController
   def kit_params
     params.require(:kit).permit(:title, :description, :photo)
   end
+
 end
