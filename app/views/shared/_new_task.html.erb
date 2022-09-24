@@ -1,4 +1,9 @@
-<%= simple_form_for [ @step, @task ], url: step_tasks_path(@step) do |f| %>
-  <%= f.input :content, label: false %>
+<%= simple_form_for [ @step, @task ],
+  url: step_tasks_path(@step),
+  wrapper: :floating_labels_form,
+  wrapper_mappings: {
+    select:        :floating_labels_select
+  } do |f| %>
+  <%= f.input :content, label: 'Type something to do…' %>
   <%= f.submit 'Submit', class:"d-none" %>
 <% end %>

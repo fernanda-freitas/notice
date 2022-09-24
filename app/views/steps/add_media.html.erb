@@ -1,14 +1,30 @@
 <div class="container-xl d-flex">
   <div class="row w-100 px-2 m-auto">
-    <div class="col-xs-12 col-md-6 m-auto text-center">
-      <div class="pb-3">
-        <p><strong>Step <%= @step_number %></strong></p>
-        <h2>Add pictures, videos or files</h2>
+    <div class="col-xs-12 col-md-5 m-auto text-center">
+      <div data-controller="select-media">
+        <div class="pb-3">
+          <p><strong>Step <%= @step_number %></strong></p>
+          <h2>Add pictures, videos or files</h2>
+        </div>
+        <%# calling photos %>
+        <div class="btn btn-outline-dark w-100 my-2" data-action="click->select-media#displayForm">
+          <%= image_tag "icon-photo.svg", class:"icon-sm" %>
+          <span>Add an image</span>
+        </div>
+        <%# calling videos %>
+        <div class="btn btn-outline-dark w-100 my-2" data-action="click->select-media#displayForm">
+          <%= image_tag "icon-play-circle.svg", class:"icon-sm" %>
+          <span>Add a video</span>
+        </div>
+        <%# calling files %>
+        <div class="btn btn-outline-dark w-100 my-2" data-action="click->select-media#displayForm">
+          <%= image_tag "icon-document-plus.svg", class:"icon-sm" %>
+          <span>Add a .PDF document</span>
+        </div>
+        <div class="d-none" data-select-media-target="form">
+          <%= render "shared/add_media" %>
+        </div>
       </div>
-      <%= simple_form_for @step, url: save_media_step_path(@step) do |f| %>
-        <%= f.input :photo, as: :file, label: false %>
-        <%= f.submit 'Next', class: 'btn btn-primary w-100' %>
-      <% end %>
     </div>
   </div>
 </div>
