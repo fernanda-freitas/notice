@@ -1,12 +1,15 @@
-<div class="custom-container mt-5">
+<div class="custom-container mt-5 pb-5">
   <div class="row">
     <div class="col-md-6">
       <% if @kit.user == current_user %>
         <div class="mb-4">
-          <%= link_to edit_kit_path(@kit.id) do %>
+          <%= link_to :back, class:"btn btn-link" do %>
+            <%= image_tag "icon-back.svg", class:"icon-md" %>
+          <% end %>
+          <%= link_to edit_kit_path(@kit.id), class:"btn btn-link" do %>
             <%= image_tag "icon-edit.svg", class:"icon-md" %>
           <% end %>
-          <%= link_to @kit, method: :delete do %>
+          <%= link_to @kit, method: :delete, class:"btn btn-link" do %>
             <%= image_tag "icon-trash.svg", class:"icon-md" %>
           <% end %>
       <% end %>
@@ -39,7 +42,7 @@
       <div class="d-flex">
         <% if @kit.user == current_user %>
           <%# <%= link_to 'New step', new_kit_step_path(@kit), class: "btn btn-primary" %>
-          <%= link_to 'New step', new_kit_intake_title_path(@kit), class: "btn btn-primary" %>
+          <%= link_to 'New step', new_kit_intake_title_path(@kit), class: "btn btn-primary mt-4 ms-auto" %>
         <% end %>
       </div>
     </div>
@@ -47,7 +50,7 @@
       <% if @kit.user == current_user %>
         <div class="share-link">
           <h4>Share it</h4>
-          <div data-controller="clipboard"class="input-group">
+          <div data-controller="clipboard" class="input-group">
             <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
             <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
               <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>

@@ -1,12 +1,31 @@
 <div class="row step-show-wrapper">
   <div class="col-md-6">
+    <%# If media == -file %>
+    <%# <div class="media-file">
+      <div class="media-file-box"> %>
+        <%#= image_tag 'icon-file-download.svg', class:"icon-xl" %>
+        <%# <h3>File to download</h3>
+        <p>file_name.pdf</p>
+      </div>
+    </div> %>
+    <%# If media == Video %>
+    <%# <div class="video-background">
+      <iframe
+        src="https://www.youtube.com/embed/BJeg2Kta2wY?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1"
+        title=""
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div> %>
+    <%# If media == Image %>
     <% if @step.photo.key? %>
       <%= cl_image_tag @step.photo.key, class:"step-show-image" %>
     <% else %>
       <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
     <% end %>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-5 px-5">
     <div class="d-flex justify-content-between mt-5">
       <% @steps.each_with_index do |step, index| %>
         <% if @step.id == step.id %>
@@ -15,38 +34,72 @@
       <% end %>
       <% if @kit.user == current_user %>
         <div>
-          <%= link_to kit_path(@step.kit_id) do %>
+          <%= link_to :back, class:"btn btn-link" do %>
             <%= image_tag "icon-back.svg", class:"icon-md" %>
           <% end %>
-          <%= link_to edit_step_path(@step) do %>
+          <%= link_to edit_step_path(@step), class:"btn btn-link" do %>
             <%= image_tag "icon-edit.svg", class:"icon-md" %>
           <% end %>
-          <%= link_to kit_step_path(@kit, @step), method: :delete do %>
+          <%= link_to kit_step_path(@kit, @step), method: :delete, class:"btn btn-link" do %>
             <%= image_tag "icon-trash.svg", class:"icon-md" %>
+          <% end %>
+        </div>
+      <% end %>
+      <% if !user_signed_in? %>
+        <div>
+          <% if @prev %>
+            <%= link_to kit_step_path(@kit, @prev), class:"btn btn-link" do %>
+              <%= image_tag "icon-chevron-left.svg", class:"icon-md" %>
+            <% end %>
+            <% else %>
+            <%= link_to '', class:"btn btn-link #{@prev ? '' : 'opacity-25'}" do %>
+              <%= image_tag "icon-chevron-left.svg", class:"icon-md" %>
+            <% end %>
+          <% end %>
+          <% if @next %>
+            <%= link_to kit_step_path(@kit, @next), class:"btn btn-link" do %>
+              <%= image_tag "icon-chevron-right.svg", class:"icon-md" %>
+            <% end %>
+            <% else %>
+            <%= link_to '', class:"btn btn-link #{@next ? '' : 'opacity-25'}" do %>
+              <%= image_tag "icon-chevron-right.svg", class:"icon-md" %>
+            <% end %>
           <% end %>
         </div>
       <% end %>
     </div>
     <h2 class="mt-5"><%= @step.title %></h2>
-    <p><%= @step.content %></p>
-    <div class="mt-5">
-      <h3>To do's</h3>
-      <ul>
+    <p class="mt-3"><%= @step.content %></p>
+    <div class="mt-5" data-controller="edit-task">
+      <h3 class="mb-4">To-do list</h3>
+      <ul class="todos-list" data-edit-task-target="list">
         <% @tasks.each do |task| %>
-          <li>
-            <p><%= task.content %>
+          <li class="d-flex align-items-center mt-2">
+            <input type="checkbox" name="" value="" checked>
+            <p class="mx-2 mb-0"><%= task.content %></p>
             <% if @kit.user == current_user %>
-              (<%= link_to 'Delete', step_task_path(@step.id, task.id), method: :delete %>)</p>
+              <%= link_to step_task_path(@step.id, task.id), method: :delete, class:"btn btn-link d-flex" do %>
+                <%= image_tag "icon-trash.svg", class:"icon-sm" %>
+              <% end %>
             <% end %>
           </li>
         <% end %>
       </ul>
+      <div class="d-none" data-edit-task-target="form">
+        <%= render "shared/new_task" %>
+      </div>
       <% if @kit.user == current_user %>
-        <%= link_to new_step_task_path(@step), class: "btn btn-link px-0" do %>
-          <%= image_tag "icon-add-task.svg", class:"icon-md" %>
-          <span>Add a new to do</span>
-        <% end %>
+        <div class="btn btn-link" data-action="click->edit-task#displayForm">
+          <%= image_tag "icon-add-task.svg", class:"icon-sm" %>
+          <span>Add to-do</span>
+        </div>
       <% end %>
     </div>
+    <% if @kit.user == current_user %>
+      <div class="d-flex justify-content-end">
+        <%= link_to 'New step', new_kit_intake_title_path(@kit), class: "btn btn-primary" %>
+        <%= link_to 'Done', kit_path(@kit), class: "btn btn-secondary ms-2" %>
+      </div>
+    <% end %>
   </div>
 </div>

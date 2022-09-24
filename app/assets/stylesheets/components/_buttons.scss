@@ -19,3 +19,14 @@
     background-color: transparent;
   }
 }
+
+.btn.btn-link {
+  padding: 0.375rem;
+  color: $dark-gray;
+  text-decoration: none;
+}
+
+.btn.btn-link:hover {
+  background-color: lighten($color: $light-gray, $amount: 8);
+  border-radius: 8px;
+}
