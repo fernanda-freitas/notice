@@ -42,6 +42,9 @@ class StepsController < ApplicationController
 
   def add_media
     # Before action
+    # Retrieving the number of the step to display it in the view
+    @kit = Kit.find(@step.kit_id)
+    @step_number = @kit.steps.count
   end
 
   def save_media

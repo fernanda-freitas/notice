@@ -1,6 +1,14 @@
-<h1>Add pictures, videos or files to describe your step</h1>
-
-<%= simple_form_for @step, url: save_media_step_path(@step) do |f| %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit 'Next step', class: 'btn btn-primary' %>
-<% end %>
+<div class="container-xl d-flex">
+  <div class="row w-100 px-2 m-auto">
+    <div class="col-xs-12 col-md-6 m-auto text-center">
+      <div class="pb-3">
+        <p><strong>Step <%= @step_number %></strong></p>
+        <h2>Add pictures, videos or files</h2>
+      </div>
+      <%= simple_form_for @step, url: save_media_step_path(@step) do |f| %>
+        <%= f.input :photo, as: :file, label: false %>
+        <%= f.submit 'Next', class: 'btn btn-primary w-100' %>
+      <% end %>
+    </div>
+  </div>
+</div>

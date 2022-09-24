@@ -1,6 +1,18 @@
-<h2>Content Information</h2>
-
-<%= simple_form_for [ @kit, @content ] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit 'Next step', class: 'btn btn-primary' %>
-<% end %>
+<div class="container-xl d-flex">
+  <div class="row w-100 px-2 m-auto">
+    <div class="col-xs-12 col-md-6 m-auto text-center">
+      <div class="pb-3">
+        <p><strong>Step <%= @step_number %></strong></p>
+        <h2>Explain what your customer has to do</h2>
+      </div>
+      <%= simple_form_for [ @kit, @content ],
+      wrapper: :floating_labels_form,
+      wrapper_mappings: {
+        select:        :floating_labels_select
+      } do |f| %>
+        <%= f.input :content, label: 'Description' %>
+        <%= f.submit 'Next', class: 'btn btn-primary w-100' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,18 @@
-<h1>Add a task</h1>
-<%= simple_form_for [ @step, @task ] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit 'Submit' %>
-<% end %>
+<div class="container-xl d-flex">
+  <div class="row w-100 px-2 m-auto">
+    <div class="col-xs-12 col-md-6 m-auto text-center">
+      <div class="pb-3">
+        <p><strong>Step <%= @step_number %></strong></p>
+        <h2>Create a to-do list for your customer</h2>
+      </div>
+      <%= simple_form_for [ @step, @task ],
+      wrapper: :floating_labels_form,
+      wrapper_mappings: {
+        select:        :floating_labels_select
+      } do |f| %>
+        <%= f.input :content, label: 'Task' %>
+        <%= f.submit 'Finish & Save', class: 'btn btn-primary w-100' %>
+      <% end %>
+    </div>
+  </div>
+</div>
