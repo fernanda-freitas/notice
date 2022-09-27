@@ -1,3 +1,8 @@
+// External libraries
+@import "bootstrap/scss/bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 // Graphical variables
 @import "config/basics";
 @import "config/colors";
@@ -5,10 +10,6 @@
 @import "config/bootstrap_variables";
 @import "config/containers";
 
-// External libraries
-@import "bootstrap/scss/bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
 
 // CSS Components
 @import "components/index";
