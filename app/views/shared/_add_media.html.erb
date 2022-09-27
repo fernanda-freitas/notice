@@ -1,0 +1,5 @@
+<p class="mt-4 text-start">Now, upload your file:</p>
+<%= simple_form_for @step, url: save_media_step_path(@step) do |f| %>
+  <%= f.input :photo, as: :file, label: false %>
+  <%= f.submit 'Next', class: 'btn btn-primary w-100' %>
+<% end %>

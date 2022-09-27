@@ -74,15 +74,15 @@
       <h3 class="mb-4">To-do list</h3>
       <ul class="todos-list" data-edit-task-target="list">
         <% @tasks.each do |task| %>
-          <li class="d-flex align-items-center mt-2">
-            <input type="checkbox" name="" value="" checked>
-            <p class="mx-2 mb-0"><%= task.content %></p>
-            <% if @kit.user == current_user %>
+          <li class="d-flex align-items-top justify-content-between">
+              <div class="d-flex align-items-top">
+                <input type="checkbox" name="" value="" class="mt-1" style="min-width:16px">
+                <p class="mx-2 text-start"><%= task.content %></p>
+              </div>
               <%= link_to step_task_path(@step.id, task.id), method: :delete, class:"btn btn-link d-flex" do %>
                 <%= image_tag "icon-trash.svg", class:"icon-sm" %>
               <% end %>
-            <% end %>
-          </li>
+            </li>
         <% end %>
       </ul>
       <div class="d-none" data-edit-task-target="form">

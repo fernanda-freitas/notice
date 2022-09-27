@@ -6,11 +6,11 @@ class TaskPolicy < ApplicationPolicy
     end
   end
 
-  def create?
+  def new?
     return true
   end
 
-  def new?
+  def create?
     return true
   end
 
