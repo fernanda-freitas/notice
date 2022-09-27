@@ -1,6 +1,5 @@
-<div class="custom-container mt-5 pb-5">
-  <div class="row">
-    <div class="col-md-6">
+  <div class="row m-0">
+    <div class="col-md-6 mt-5 pb-5 px-5">
       <% if @kit.user == current_user %>
         <div class="mb-4">
           <%= link_to :back, class:"btn btn-link" do %>
@@ -12,17 +11,20 @@
           <%= link_to @kit, method: :delete, class:"btn btn-link" do %>
             <%= image_tag "icon-trash.svg", class:"icon-md" %>
           <% end %>
+        </div>
       <% end %>
-      </div>
       <h2><%= @kit.title %></h2>
       <p><%= @kit.description %></p>
       <% counter = 1 %>
-      <div class="row">
+      <div class="row pt-5">
+        <h3>Follow the steps:</h3>
         <% @steps.each do |step| %>
           <div class="col-md-6 px-0">
             <div class="wrapper-compact-card">
-              <%= link_to edit_step_path(step), class:"edit-button" do %>
-                <%= image_tag 'icon-edit.svg', class:"icon-sm" %>
+              <% if @kit.user == current_user %>
+                <%= link_to edit_step_path(step), class:"edit-button" do %>
+                  <%= image_tag 'icon-edit.svg', class:"icon-sm" %>
+                <% end %>
               <% end %>
             </div>
             <%= link_to kit_step_path(@kit, step) do %>
@@ -46,39 +48,43 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-5 offset-md-1 d-flex">
-      <% if @kit.user == current_user %>
+    <% if @kit.user == current_user %>
+      <div class="col-md-5 offset-md-1 d-flex">
         <div class="share-link">
-          <h4>Share it</h4>
+          <h4>Share the link</h4>
           <div data-controller="clipboard" class="input-group">
             <input data-clipboard-target="input" type="text" class="form-control" value="<%= @kit_url %>">
             <button data-action="click->clipboard#copy" data-clipboard-target="button" data-tooltip="Copy to clipboard" class="btn form-button" type="button">
               <%= image_tag 'icon-copy.svg', data: { clipboard_target: "copy" }, class:"icon-md" %>
             </button>
           </div>
-        </div>
-      <% end %>
 
-      <div data-controller="alert" data-alert-message-value="Email sent successfully" data-alert-type-value="success">
-        <%= simple_form_for :kit, url: send_kit_kit_path(@kit) do |f| %>
-          <div class="share-link">
-            <div>
-              <%= f.input :link, as: :hidden, data: { clipboard_target: "input" }, input_html: { value: @kit_url } %>
-            </div>
-            <div class="mt-5">
-              <%= f.simple_fields_for :email do |o|  %>
-                <%= o.input :email, label: false, class: "form-control", placeholder: "Type Email address" %>
-              <% end %>
-              <%= f.button :submit, "Send an Email", class: "btn btn-primary w-100", id: "liveAlertBtn", data: { action: "click->alert#display"} %>
-            </div>
+          <div data-controller="alert" data-alert-message-value="The email has been sent successfully!" data-alert-type-value="success">
+          <h4 class="pt-5">Send by email</h4>
+            <%= simple_form_for :kit, url: send_kit_kit_path(@kit) do |f| %>
+              <div class="mb-5">
+                <%= f.input :link, as: :hidden, data: { clipboard_target: "input" }, input_html: { value: @kit_url } %>
+                <%= f.simple_fields_for :email do |o|  %>
+                  <%= o.input :email, label: false, class: "form-control", placeholder: "Add email addresses…" %>
+                <% end %>
+                <%= f.button :submit, "Send", class: "btn btn-primary w-100", id: "liveAlertBtn", data: { action: "click->alert#display"} %>
+              </div>
+            <% end %>
+            <div id="liveAlertPlaceholder" data-alert-target="alert"></div>
           </div>
-        <% end %>
-        <div id="liveAlertPlaceholder" data-alert-target="alert"></div>
+        </div>
       </div>
-    </div>
-
+    <% else %>
+      <div class="col-md-6 p-0">
+        <% if @kit.photo.key? %>
+          <%= cl_image_tag @kit.photo.key, class:"step-show-image" %>
+        <% else %>
+          <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
+        <% end %>
+        </div>
+      </div>
+    <% end %>
 
     <div class="half-right-background"></div>
   </div>
   <span id="check" class="d-none"><%= asset_path('icon-check.svg') %></span>
-</div>
