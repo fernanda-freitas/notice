@@ -1,17 +1,19 @@
-<div class="row step-show-wrapper">
-  <div class="col-md-6">
-    <%# If media == -file %>
-    <%# <div class="media-file">
-      <div class="media-file-box"> %>
-        <%#= image_tag 'icon-file-download.svg', class:"icon-xl" %>
-        <%# <h3>File to download</h3>
-        <p>file_name.pdf</p>
-      </div>
-    </div> %>
-
+<div class="row step-show-wrapper mx-0">
+  <div class="col-md-6 ps-0">
     <% if @step.photo.key? %>
+      <%# If it's a video %>
       <% if @step.photo.url.include? "mp4" %>
         <%= cl_video_tag @step.photo.key, autoplay:true, controls:true, class:"step-show-image" %>
+      <%# If it's a pdf %>
+      <% elsif @step.photo.url.include? "pdf" %>
+        <div class="media-file">
+          <div class="media-file-box">
+            <%= image_tag 'icon-file-download.svg', class:"icon-xl" %>
+            <h3><%= link_to("Download file", cl_private_download_url(@step.photo.url, :pdf, :attachment => true)) %></h3>
+            <p>file_name.pdf</p>
+          </div>
+        </div>
+      <%# If it's an image %>
       <% else %>
         <%= cl_image_tag @step.photo.key, class:"step-show-image" %>
       <% end %>
