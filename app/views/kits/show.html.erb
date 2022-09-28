@@ -31,10 +31,19 @@
               <div class="compact-card mx-2 mt-4">
                 <h5 class="card-title"><%= counter %> - <%= step.title %></h5>
                 <% if step.photo.key? %>
-                  <%= cl_image_tag step.photo.key, class:"card-image" %>
+                <%# If it's a video %>
+                <% if step.photo.url.include? "mp4" %>
+                  <%= cl_video_tag step.photo.key, autoplay:true, controls:true, class:"card-image" %>
+                <%# If it's a pdf %>
+                <% elsif step.photo.url.include? "pdf" %>
+                  <%= image_tag "illustration-download-file.svg", class:"card-image" %>
+                <%# If it's an image %>
                 <% else %>
-                  <%= image_tag "https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60", class:"card-image" %>
+                  <%= cl_image_tag step.photo.key, class:"card-image" %>
                 <% end %>
+              <% else %>
+                  <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"card-image"%>
+              <% end %>
               </div>
             <% end %>
           </div>
@@ -77,7 +86,7 @@
     <% else %>
       <div class="col-md-6 p-0">
         <% if @kit.photo.key? %>
-          <%= cl_image_tag @kit.photo.key, class:"step-show-image" %>
+          <%= cl_image_tag @kit.photo.key, class:"" %>
         <% else %>
           <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
         <% end %>
