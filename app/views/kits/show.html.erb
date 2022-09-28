@@ -76,7 +76,7 @@
                 <%= f.simple_fields_for :email do |o|  %>
                   <%= o.input :email, label: false, class: "form-control", placeholder: "Add email addresses…" %>
                 <% end %>
-                <%= f.button :submit, "Send", class: "btn btn-primary w-100", id: "liveAlertBtn", data: { action: "click->alert#display"} %>
+                <%= f.button :submit, "Send", class: "btn btn-primary w-100 mt-3", id: "liveAlertBtn", data: { action: "click->alert#display"} %>
               </div>
             <% end %>
             <div id="liveAlertPlaceholder" data-alert-target="alert"></div>
