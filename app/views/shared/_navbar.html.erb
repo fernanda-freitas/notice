@@ -1,4 +1,4 @@
-<% if @kit.user == current_user %>
+<% if user_signed_in? %>
   <div class="custom-container navbar navbar-expand-sm navbar-light navbar-lewagon">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "icon-logo.svg" %>

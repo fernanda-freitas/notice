@@ -16,7 +16,7 @@
   font-family: 'Poppins', sans-serif;
 
   &:hover {
-    background-color: transparent;
+    background-color: transparent !important;
   }
 }
 
@@ -41,4 +41,5 @@
 .btn.btn-link:hover {
   background-color: lighten($color: $light-gray, $amount: 8);
   border-radius: 8px;
+  color: $dark-gray;
 }
