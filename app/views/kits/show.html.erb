@@ -30,6 +30,7 @@
             </div>
             <%= link_to kit_step_path(@kit, step) do %>
               <div class="compact-card mx-2 mt-4">
+                <h3 class="card-title"><%= counter %></h3>
                 <% if step.photo.key? %>
                 <%# If it's a video %>
                 <% if step.photo.url.include? "mp4" %>
@@ -86,15 +87,18 @@
     <% else %>
       <div class="col-md-5 d-flex vh-100">
         <% if @kit.photo.key? %>
-          <%= cl_image_tag @kit.photo.key, class:"" %>
+          <%= cl_image_tag @kit.photo.key, class:"ms-5" %>
         <% else %>
-          <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
+          <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image ms-5" %>
         <% end %>
         </div>
       </div>
     <% end %>
 
-    <div class="half-right-background"></div>
+    <% if user_signed_in? %>
+      <div class="half-right-background"></div>
+    <% end %>
+
   </div>
 </div>
 <span id="check" class="d-none"><%= asset_path('icon-check.svg') %></span>
