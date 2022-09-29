@@ -26,7 +26,6 @@ class StepsController < ApplicationController
     @step = Step.find(params[:id])
     @task = Task.new
     authorize @step
-
     @prev = Step.where("kit_id = ?", @step.kit_id).where("id < ?", @step.id).order("id").last
     @next = Step.where("kit_id = ?", @step.kit_id).where("id > ?", @step.id).order("id").first
   end
