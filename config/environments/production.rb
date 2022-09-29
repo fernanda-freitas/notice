@@ -50,8 +50,7 @@ Rails.application.configure do
   # config.force_ssl = true
 
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.default_url_options = { host: "http://www.getnotice.me/" }
-  config.action_mailer.default_url_options = { host: "notice-lewagon.herokuapp.com/" }
+  config.action_mailer.default_url_options = { host: "http://www.getnotice.me/" }
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
