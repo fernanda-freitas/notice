@@ -22,7 +22,7 @@ class StepsController < ApplicationController
   def show
     # Before action
     @tasks = Task.where(:step_id => @step)
-    @steps = Step.where(kit_id: @kit)
+    @steps = Step.where(kit_id: @kit).order('id')
     @step = Step.find(params[:id])
     @task = Task.new
     authorize @step
