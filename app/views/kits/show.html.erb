@@ -1,8 +1,9 @@
-  <div class="row m-0">
-    <div class="col-md-6 mt-5 pb-5 px-5">
+<div class="custom-container">
+  <div class="row m-0 mx-auto">
+    <div class="col-md-6 mt-5 pb-5">
       <% if @kit.user == current_user %>
         <div class="mb-4">
-          <%= link_to :back, class:"btn btn-link" do %>
+          <%= link_to root_path, class:"btn btn-link" do %>
             <%= image_tag "icon-back.svg", class:"icon-md" %>
           <% end %>
           <%= link_to edit_kit_path(@kit.id), class:"btn btn-link" do %>
@@ -16,7 +17,7 @@
       <h2><%= @kit.title %></h2>
       <p><%= @kit.description %></p>
       <% counter = 1 %>
-      <div class="row pt-5">
+      <div class="row pt-3">
         <h3>Follow the steps:</h3>
         <% @steps.each do |step| %>
           <div class="col-md-6 px-0">
@@ -29,12 +30,20 @@
             </div>
             <%= link_to kit_step_path(@kit, step) do %>
               <div class="compact-card mx-2 mt-4">
-                <h5 class="card-title"><%= counter %> - <%= step.title %></h5>
                 <% if step.photo.key? %>
-                  <%= cl_image_tag step.photo.key, class:"card-image" %>
+                <%# If it's a video %>
+                <% if step.photo.url.include? "mp4" %>
+                  <%= cl_video_tag step.photo.key, autoplay:true, controls:true, class:"card-image" %>
+                <%# If it's a pdf %>
+                <% elsif step.photo.url.include? "pdf" %>
+                  <%= image_tag "illustration-download-file.svg", class:"card-image" %>
+                <%# If it's an image %>
                 <% else %>
-                  <%= image_tag "https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60", class:"card-image" %>
+                  <%= cl_image_tag step.photo.key, class:"card-image" %>
                 <% end %>
+              <% else %>
+                  <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"card-image"%>
+              <% end %>
               </div>
             <% end %>
           </div>
@@ -60,14 +69,14 @@
           </div>
 
           <div data-controller="alert" data-alert-message-value="The email has been sent successfully!" data-alert-type-value="success">
-          <h4 class="pt-5">Send by email</h4>
+          <h4 class="pt-4">Send by email</h4>
             <%= simple_form_for :kit, url: send_kit_kit_path(@kit) do |f| %>
               <div class="mb-5">
                 <%= f.input :link, as: :hidden, data: { clipboard_target: "input" }, input_html: { value: @kit_url } %>
                 <%= f.simple_fields_for :email do |o|  %>
                   <%= o.input :email, label: false, class: "form-control", placeholder: "Add email addresses…" %>
                 <% end %>
-                <%= f.button :submit, "Send", class: "btn btn-primary w-100", id: "liveAlertBtn", data: { action: "click->alert#display"} %>
+                <%= f.button :submit, "Send", class: "btn btn-primary w-100 mt-3", id: "liveAlertBtn", data: { action: "click->alert#display"} %>
               </div>
             <% end %>
             <div id="liveAlertPlaceholder" data-alert-target="alert"></div>
@@ -75,9 +84,9 @@
         </div>
       </div>
     <% else %>
-      <div class="col-md-6 p-0">
+      <div class="col-md-5 d-flex vh-100">
         <% if @kit.photo.key? %>
-          <%= cl_image_tag @kit.photo.key, class:"step-show-image" %>
+          <%= cl_image_tag @kit.photo.key, class:"" %>
         <% else %>
           <%= image_tag 'https://images.unsplash.com/photo-1497367917223-64c44836be50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60', class:"step-show-image" %>
         <% end %>
@@ -87,4 +96,5 @@
 
     <div class="half-right-background"></div>
   </div>
-  <span id="check" class="d-none"><%= asset_path('icon-check.svg') %></span>
+</div>
+<span id="check" class="d-none"><%= asset_path('icon-check.svg') %></span>

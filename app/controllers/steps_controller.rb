@@ -22,13 +22,12 @@ class StepsController < ApplicationController
   def show
     # Before action
     @tasks = Task.where(:step_id => @step)
-    @steps = Step.where(kit_id: @kit)
+    @steps = Step.where(kit_id: @kit).order('id')
     @step = Step.find(params[:id])
     @task = Task.new
     authorize @step
-
-    @prev = Step.where("id < ?", @step.id).order("id").last
-    @next = Step.where("id > ?", @step.id).order("id").first
+    @prev = Step.where("kit_id = ?", @step.kit_id).where("id < ?", @step.id).order("id").last
+    @next = Step.where("kit_id = ?", @step.kit_id).where("id > ?", @step.id).order("id").first
   end
 
   def edit
