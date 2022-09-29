@@ -1,9 +1,13 @@
-<div class="custom-container">
-  <h1>Edit the step</h1>
-  <%= simple_form_for [ @kit, @step ] do |f| %>
-    <%= f.input :title %>
-    <%= f.input :content %>
-    <%= f.input :photo, as: :file %>
-    <%= f.submit 'Update' %>
-  <% end %>
+<div class="container-xl d-flex">
+  <div class="row w-100 px-2 m-auto">
+    <div class="col-xs-12 col-md-6 m-auto">
+      <h2 class="text-center">Edit the step</h2>
+      <%= simple_form_for [ @kit, @step ] do |f| %>
+        <%= f.input :title %>
+        <%= f.input :content %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit 'Update', class: "btn btn-primary w-100" %>
+      <% end %>
+    </div>
+  </div>
 </div>

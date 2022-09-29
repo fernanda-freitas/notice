@@ -23,11 +23,16 @@
   </div>
   <div class="col-md-5 px-5">
     <div class="d-flex justify-content-between mt-5">
-      <% @steps.each_with_index do |step, index| %>
-        <% if @step.id == step.id %>
-          <h3>Step <%= index + 1 %></h3>
+      <div class="d-flex">
+        <%= link_to kit_path(@kit), class:"btn btn-link" do %>
+          <%= image_tag 'icon-home.svg', class:"icon-md" %>
         <% end %>
-      <% end %>
+        <% @steps.each_with_index do |step, index| %>
+          <% if @step.id == step.id %>
+            <h3 class="my-auto ms-2">Step <%= index + 1 %></h3>
+          <% end %>
+        <% end %>
+      </div>
       <% if @kit.user == current_user %>
         <div>
           <%= link_to kit_path(@kit), class:"btn btn-link" do %>
@@ -75,8 +80,10 @@
                 <input type="checkbox" name="" value="" class="mt-1" style="min-width:16px">
                 <p class="mx-2 text-start"><%= task.content %></p>
               </div>
-              <%= link_to step_task_path(@step.id, task.id), method: :delete, class:"btn btn-link d-flex" do %>
-                <%= image_tag "icon-trash.svg", class:"icon-sm" %>
+              <% if @kit.user == current_user %>
+                <%= link_to step_task_path(@step.id, task.id), method: :delete, class:"btn btn-link d-flex" do %>
+                  <%= image_tag "icon-trash.svg", class:"icon-sm" %>
+                <% end %>
               <% end %>
             </li>
         <% end %>
