@@ -8,7 +8,7 @@
       <% elsif @step.photo.url.include? "pdf" %>
         <div class="media-file">
           <div class="media-file-box">
-            <%= image_tag 'icon-file-download.svg', class:"icon-xl" %>
+            <%= image_tag 'icon-file-download.svg', class:"icon-2xl" %>
             <h3><%= link_to("Download file", cl_private_download_url(@step.photo.url, :pdf, :attachment => true)) %></h3>
             <p>file_name.pdf</p>
           </div>
@@ -30,7 +30,7 @@
       <% end %>
       <% if @kit.user == current_user %>
         <div>
-          <%= link_to :back, class:"btn btn-link" do %>
+          <%= link_to kit_path(@kit), class:"btn btn-link" do %>
             <%= image_tag "icon-back.svg", class:"icon-md" %>
           <% end %>
           <%= link_to edit_step_path(@step), class:"btn btn-link" do %>

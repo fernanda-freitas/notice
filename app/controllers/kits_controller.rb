@@ -9,7 +9,7 @@ class KitsController < ApplicationController
   end
 
   def show
-    @steps = Step.where(kit_id: @kit)
+    @steps = Step.where(kit_id: @kit).order('id')
     @kit_url = "#{request.base_url}/kits/#{@kit.id}"
   end
 

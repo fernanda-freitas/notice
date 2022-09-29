@@ -1,8 +1,9 @@
-  <div class="row m-0">
-    <div class="col-md-6 mt-5 pb-5 px-5">
+<div class="custom-container">
+  <div class="row m-0 mx-auto">
+    <div class="col-md-6 mt-5 pb-5">
       <% if @kit.user == current_user %>
         <div class="mb-4">
-          <%= link_to :back, class:"btn btn-link" do %>
+          <%= link_to root_path, class:"btn btn-link" do %>
             <%= image_tag "icon-back.svg", class:"icon-md" %>
           <% end %>
           <%= link_to edit_kit_path(@kit.id), class:"btn btn-link" do %>
@@ -16,7 +17,7 @@
       <h2><%= @kit.title %></h2>
       <p><%= @kit.description %></p>
       <% counter = 1 %>
-      <div class="row pt-5">
+      <div class="row pt-3">
         <h3>Follow the steps:</h3>
         <% @steps.each do |step| %>
           <div class="col-md-6 px-0">
@@ -29,7 +30,6 @@
             </div>
             <%= link_to kit_step_path(@kit, step) do %>
               <div class="compact-card mx-2 mt-4">
-                <h5 class="card-title"><%= counter %> - <%= step.title %></h5>
                 <% if step.photo.key? %>
                 <%# If it's a video %>
                 <% if step.photo.url.include? "mp4" %>
@@ -84,7 +84,7 @@
         </div>
       </div>
     <% else %>
-      <div class="col-md-6 p-0">
+      <div class="col-md-5 d-flex vh-100">
         <% if @kit.photo.key? %>
           <%= cl_image_tag @kit.photo.key, class:"" %>
         <% else %>
@@ -96,4 +96,5 @@
 
     <div class="half-right-background"></div>
   </div>
-  <span id="check" class="d-none"><%= asset_path('icon-check.svg') %></span>
+</div>
+<span id="check" class="d-none"><%= asset_path('icon-check.svg') %></span>
