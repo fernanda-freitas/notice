@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
   #
   def sharekit
     email = params[:email]
-    link = params[:link]
+    @link = params[:link]
     # company_name = current_user.company_name
     mail(to: email, subject: "Welcome!")
   end
