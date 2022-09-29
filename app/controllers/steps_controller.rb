@@ -27,8 +27,8 @@ class StepsController < ApplicationController
     @task = Task.new
     authorize @step
 
-    @prev = Step.where("id < ?", @step.id).order("id").last
-    @next = Step.where("id > ?", @step.id).order("id").first
+    @prev = Step.where("kit_id = ?", @step.kit_id).where("id < ?", @step.id).order("id").last
+    @next = Step.where("kit_id = ?", @step.kit_id).where("id > ?", @step.id).order("id").first
   end
 
   def edit

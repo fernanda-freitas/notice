@@ -47,7 +47,7 @@
             <%= link_to kit_step_path(@kit, @prev), class:"btn btn-link" do %>
               <%= image_tag "icon-chevron-left.svg", class:"icon-md" %>
             <% end %>
-            <% else %>
+          <% else %>
             <%= link_to '', class:"btn btn-link #{@prev ? '' : 'opacity-25'}" do %>
               <%= image_tag "icon-chevron-left.svg", class:"icon-md" %>
             <% end %>
@@ -56,7 +56,7 @@
             <%= link_to kit_step_path(@kit, @next), class:"btn btn-link" do %>
               <%= image_tag "icon-chevron-right.svg", class:"icon-md" %>
             <% end %>
-            <% else %>
+          <% else %>
             <%= link_to '', class:"btn btn-link #{@next ? '' : 'opacity-25'}" do %>
               <%= image_tag "icon-chevron-right.svg", class:"icon-md" %>
             <% end %>
