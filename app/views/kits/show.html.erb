@@ -30,7 +30,7 @@
             </div>
             <%= link_to kit_step_path(@kit, step) do %>
               <div class="compact-card mx-2 mt-4">
-                <h3 class="card-title"><%= counter %></h3>
+                <h4 class="card-title"><%= counter %> - <%= step.title %></h4>
                 <% if step.photo.key? %>
                 <%# If it's a video %>
                 <% if step.photo.url.include? "mp4" %>
